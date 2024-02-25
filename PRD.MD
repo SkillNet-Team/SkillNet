@@ -54,16 +54,15 @@ The development timeline for SkillNet is as follows:
 
 #### Internal alignment
 
-- We aim to introduce SkillNet, a platform facilitating skill exchange within local communities.
-- The launch will be communicated to customers through email newsletters, social media announcements, and blog posts.
-Customers will understand the changes through clear and concise messaging highlighting the benefits of SkillNet, such as affordable and personalized learning opportunities.
+- We aim to introduce SkillNet, a platform facilitating skill exchange within local/ class communities.
+- We will share information about SkillNet with classmates, friends and instructor through email and social media announcement to ensure everyone is aware of the platform's purpose, features, and benefits.
 
 ### Are we sure this is going to work?
 
 #### Quality
 
 - Rigorous testing will ensure that SkillNet functions as intended across various devices and browsers.
-- We have a contingency plan in place to address any issues that may arise post-launch, including dedicated support channels and rapid response teams.
+- We have a contingency plan in place to address any issues that may arise post-launch, including dedicated response team.
 
 #### Measurement
 
@@ -72,8 +71,11 @@ Customers will understand the changes through clear and concise messaging highli
 
 ### What are our launch steps?
 
-- Launch audiences have been identified in collaboration with Product Marketing Management (PMM), including target demographics and user segments.
-- Launch steps, including beta testing, feedback integration, and marketing strategies, have been agreed upon with PMM to ensure a coordinated and effective launch.
+- Collaborate with classmates and instructors to identify the target audience for the project within the class community, considering factors such as student demographics, interests, and educational needs.
+- Conduct beta testing within the class community to gather feedback from peers and instructors, allowing for early identification of any issues or areas for improvement.
+- Deliver a comprehensive presentation of the project to the class, demonstrating its functionality, discussing the development process, and addressing any questions or feedback.
+- Gather feedback from classmates and instructors during the presentation, allowing for further insights and suggestions for improvement.
+- Document the project development process, including challenges faced, solutions implemented, and key learnings, for future reference.
 
 ## 🚀 It’s go time!
 With all preparations in place, we are ready to launch SkillNet and transform traditional learning barriers into collaborative opportunities for individuals worldwide. Let's make learning accessible and enjoyable for everyoone!
