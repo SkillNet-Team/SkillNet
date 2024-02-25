@@ -76,4 +76,4 @@ Customers will understand the changes through clear and concise messaging highli
 - Launch steps, including beta testing, feedback integration, and marketing strategies, have been agreed upon with PMM to ensure a coordinated and effective launch.
 
 ## 🚀 It’s go time!
-    With all preparations in place, we are ready to launch SkillNet and transform traditional learning barriers into collaborative opportunities for individuals worldwide. Let's make learning accessible and enjoyable for everyone!
+With all preparations in place, we are ready to launch SkillNet and transform traditional learning barriers into collaborative opportunities for individuals worldwide. Let's make learning accessible and enjoyable for everyoone!
