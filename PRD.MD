@@ -46,7 +46,7 @@ We are building a web-based platform that facilitates skill exchange and collabo
 The development timeline for SkillNet is as follows:
 - Phase 1: Design Phase (March 2024)
 - Phase 2: Platform development and basic functionality implementation Testing and refinement based on user feedback (March-April 2024)
-- Phase 3: Testing and refinement based on user feedback and launch preparation  (April-May 2024)
+- Phase 3: Testing and refinement based on user feedback and launch preparation (April-May 2024)
 - Phase 4: Platform launch (End May 2024)
 - Phase 5: Contnous improvement and feature expansion based on user insights (ongoing)
 
