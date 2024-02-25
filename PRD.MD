@@ -1,10 +1,10 @@
 # SkillNet’s PRD
 ## Team Members
-- Myesha Mahazabeen (Product Manager)
-- Najia Jahan (Technical Program Manager)
-- Talike Bennett (Test Engineer)
-- Eliza Berard (Code Reviewer)
-- Aleika Chery (DevOps Engineer)
+- Myesha Mahazabeen (Product Manager) 💡
+- Najia Jahan (Technical Program Manager) 📝
+- Talike Bennett (Test Engineer) 🔍
+- Eliza Berard (Code Reviewer) 💻
+- Aleika Chery (DevOps Engineer) ⚙️
 
 ## 👀 Problem
 
