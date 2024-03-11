@@ -1,9 +1,13 @@
-const express=require('express')
-const app=express()
+const express = require('express');
+const app = express();
 
-app.get("/api", (req, res) =>{
+// Define your API route handler
+app.get("/api", (req, res) => {
+    // Send a custom message when accessing the /api endpoint
+    res.send("Hurray! Server is running! 🚀");
+});
 
-        res.json({"users":["Hello user1", "Hello user2", "Hello user3"]})
-})
-
-app.listen(5000, ()=> {console.log("Server started on port 5000")})
+const PORT = 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
