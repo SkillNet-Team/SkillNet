@@ -1,0 +1,58 @@
+/* Join.css */
+
+/* Container styles */
+.join-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left; /* Align text to the left */
+  }
+  
+  /* Left content styles */
+  .join-left {
+    flex: 1; /* Take up equal space */
+    padding: 20px;
+  }
+  
+  h1 {
+    font-family: 'Archivo Black', sans-serif; /* Use Archivo Black font */
+    font-size: 2.5rem; /* Increase the font size */
+  }
+  
+  p {
+    font-size: 1.5rem; /* Increase the font size */
+    margin-bottom: 20px; /* Add some spacing between paragraphs */
+  }
+  
+  .join-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem; /* Increase the font size */
+    cursor: pointer;
+  }
+  
+  .join-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .login-link {
+    font-size: 1.2rem; /* Increase font size */
+  }
+  
+  .login-link a {
+    color: #007bff;
+  }
+  
+  /* Right content styles */
+  .join-right {
+    flex: 1; /* Take up equal space */
+    padding: 20px;
+  }
+  
+  .join-right img {
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
