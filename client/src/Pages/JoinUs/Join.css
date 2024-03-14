@@ -25,7 +25,7 @@
   }
   
   .join-button {
-    background-color: #007bff;
+    background-color: #7F25DA;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -47,12 +47,17 @@
   
   /* Right content styles */
   .join-right {
-    flex: 1; /* Take up equal space */
-    padding: 20px;
-  }
-  
-  .join-right img {
-    max-width: 100%; /* Ensure the image doesn't exceed its container */
-    height: auto; /* Maintain aspect ratio */
-  }
+  text-align: center; /* Center the content horizontally */
+  flex: 1; /* Take up equal space */
+  padding: 20px;
+}
+
+.join-right img {
+  max-width: 100%; /* Ensure the image doesn't exceed its container */
+  height: auto; /* Maintain aspect ratio */
+  display: inline-block; /* Ensure the image behaves as a block element */
+}
+
+
+
   
