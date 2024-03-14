@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'; // Assuming you have some CSS file for styling
+import Navbar from './Navbar/Navbar';
+import Join from './Pages/JoinUs/Join'; 
+import Home from './Pages/HomePage/Home';
 
 function App() {
   const [backendData, setBackendData] = useState([]);
@@ -16,43 +20,30 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#b2ebf2' }}>
-        <div className="container">
-          <a className="navbar-brand" href="#">Your Logo</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ml-auto d-flex justify-content-between w-50">
-              <li className="nav-item">
-                <a className="nav-link" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">About Us</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Resources</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Community</a>
-              </li>
-            </ul>
-          </div>
+    <Router>
+      <div>
+        <Navbar /> {/* Render the Navbar component */}
+        
+        <div className="container mt-4">
+          <Routes>
+            <Route path="/" element={ // Adjusted the Route component
+              <div>
+                <h1>Welcome to SkillNet</h1>
+                {backendData.length === 0 ? (
+                  <p>Start building SkillNet</p>
+                ) : (
+                  backendData.map((user, i) => (
+                    <p key={i}>{user}</p>
+                  ))
+                )}
+              </div>
+            } />
+            <Route path="/join" element={<Join />} /> 
+            <Route path="/home" element={<Home />} /> 
+          </Routes>
         </div>
-      </nav>
-
-      <div className="container mt-4">
-        <h1>Welcome to SkillNet</h1>
-        {backendData.length === 0 ? (
-          <p>Start building SkillNet</p>
-        ) : (
-          backendData.map((user, i) => (
-            <p key={i}>{user}</p>
-          ))
-        )}
       </div>
-    </div>
+    </Router>
   );
 }
 
