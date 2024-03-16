@@ -16,6 +16,10 @@ const Navbar = () => {
     console.log("Logout clicked");
   };
 
+  const handleDropdownClick = (event) => {
+    event.stopPropagation(); // Prevent event propagation
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -39,8 +43,8 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faUser} size="2x" className="user-icon" />
           </button>
           {isDropdownOpen && (
-            <div className="dropdown-content">
-              <a href="/profile">Profile</a>
+            <div className="dropdown-content" onClick={handleDropdownClick}>
+              <a href="/personalprofile">Profile</a>
               <button onClick={handleLogout}>Log Out</button>
             </div>
           )}
