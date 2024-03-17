@@ -1,130 +1,129 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px; /* Increased padding for wider navbar */
-    background-color: #b2ebf2;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar-logo img {
-    width: 70px; /* Adjust as needed */
-  }
-  
-  .navbar-menu {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif; /* Apply the custom font */
-    justify-content: space-between; /* Distribute items evenly */
-  }
-  
-  .navbar-menu li {
-    margin: 50px; /* Adjust the margin between items */
-  }
-  
-  .navbar-menu li:last-child {
-    margin-right: 0;
-  }
-  
-  .navbar-menu a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    font-size: 18px; /* Adjust font size if needed */
-  }
-  
-  .navbar-search {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-search input[type="text"] {
-    padding: 10px; /* Increased padding for input */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .navbar-search button {
-    margin-left: 15px; /* Increased margin */
-    padding: 10px 15px; /* Increased padding for button */
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .user-icon {
-    display: inline-block;
-    font-size: 24px; /* Adjust the size as needed */
-    border-radius: 100%; /* Make it circular */
-    background-color: #ececec; /* Background color for the circle */
-    padding: 10px; /* Add padding to make it bigger */
-    text-decoration: none; /* Remove underline */
-    color: #011283; /* Set icon color */
-  }
-  
-  .user-icon:hover {
-    background-color: #aaa; /* Change background color on hover */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px; /* Increased padding for wider navbar */
+  background-color: #b2ebf2;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+}
+
+.navbar-logo img {
+  width: 70px; /* Adjust as needed */
+}
+
+.navbar-menu {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif; /* Apply the custom font */
+  justify-content: space-between; /* Distribute items evenly */
+}
+
+.navbar-menu li {
+  margin: 50px; /* Adjust the margin between items */
+}
+
+.navbar-menu li:last-child {
+  margin-right: 0;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px; /* Adjust font size if needed */
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search input[type="text"] {
+  padding: 10px; /* Increased padding for input */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.navbar-search button {
+  margin-left: 15px; /* Increased margin */
+  padding: 10px 15px; /* Increased padding for button */
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.user-icon {
+  display: inline-block;
+  font-size: 24px; /* Adjust the size as needed */
+  border-radius: 100%; /* Make it circular */
+  background-color: #ececec; /* Background color for the circle */
+  padding: 10px; /* Add padding to make it bigger */
+  text-decoration: none; /* Remove underline */
+  color: #011283; /* Set icon color */
+}
+
+.user-icon:hover {
+  background-color: #aaa; /* Change background color on hover */
+}
 
 .dropbtn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 120px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    top: 50px; /* Adjust this value based on your design */
-    right: 0;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown-content button {
-    color: black;
-    padding: 12px 16px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .dropdown-content button:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
 
-  
-  
-  
-  
-  
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: 50px; /* Adjust this value based on your design */
+  right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+
