@@ -5,6 +5,8 @@ import Navbar from './Navbar/Navbar';
 import Join from './Pages/JoinUs/Join'; 
 import Home from './Pages/HomePage/Home';
 import PersonalProfile from './Pages/Profile/PersonalProfile';
+import SignUp from './Pages/Signin/SignUp';
+import Login from './Pages/Signin/Login';
 
 function App() {
   const [backendData, setBackendData] = useState([]);
@@ -41,6 +43,8 @@ function App() {
             } />
             <Route path="/join" element={<Join />} /> 
             <Route path="/home" element={<Home />} />
+            <Route path="/signup" element={<SignUp />} /> 
+            <Route path="/login" element={<Login />} /> 
             <Route path="/personalprofile" element={<PersonalProfile />} /> 
           </Routes>
         </div>
