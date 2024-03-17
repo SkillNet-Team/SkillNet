@@ -4,6 +4,7 @@ import './App.css'; // Assuming you have some CSS file for styling
 import Navbar from './Navbar/Navbar';
 import Join from './Pages/JoinUs/Join'; 
 import Home from './Pages/HomePage/Home';
+import PersonalProfile from './Pages/Profile/PersonalProfile';
 
 function App() {
   const [backendData, setBackendData] = useState([]);
@@ -39,7 +40,8 @@ function App() {
               </div>
             } />
             <Route path="/join" element={<Join />} /> 
-            <Route path="/home" element={<Home />} /> 
+            <Route path="/home" element={<Home />} />
+            <Route path="/personalprofile" element={<PersonalProfile />} /> 
           </Routes>
         </div>
       </div>
