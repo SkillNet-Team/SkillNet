@@ -5,6 +5,8 @@ import Navbar from './Navbar/Navbar';
 import Join from './Pages/JoinUs/Join'; 
 import Home from './Pages/HomePage/Home';
 import PersonalProfile from './Pages/Profile/PersonalProfile';
+import Login from './Pages/Signin/Login';
+import SignUp from './Pages/Signin/SignUp';
 
 function App() {
   const [backendData, setBackendData] = useState([]);
@@ -23,6 +25,7 @@ function App() {
   return (
     <Router>
       <div>
+        
         <Navbar /> {/* Render the Navbar component */}
         
         <div className="container mt-4">
@@ -42,6 +45,9 @@ function App() {
             <Route path="/join" element={<Join />} /> 
             <Route path="/home" element={<Home />} />
             <Route path="/personalprofile" element={<PersonalProfile />} /> 
+            <Route path="/home" element={<Home />} /> 
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} /> 
           </Routes>
         </div>
       </div>
