@@ -3,7 +3,7 @@ import './Home.css'; // Import the CSS file for styling
 import p1Image from '../../Images/p1.jpg';
 import p2Image from '../../Images/p2.jpg';
 import p3Image from '../../Images/p3.jpg';
- // Import the image
+// Import the image
 
 const Home = () => {
   // Helper function to generate star icons based on rating
@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h2 className="home-title">Skills that matches you!</h2>
+      <h2 className="home-title">Skills that match you!</h2>
       <div className="card-container">
         {/* Card 1 */}
         <div className="card">
@@ -31,6 +31,7 @@ const Home = () => {
             <p className="card-profession">Software Engineer</p>
             <p className="card-experience">Experience: 5 years</p>
             <p className="card-rating">Rating: {generateStars(4.5)}</p>
+            <button className="swap-button">Swap</button> {/* Green swap button */}
           </div>
         </div>
         {/* Card 2 */}
@@ -41,6 +42,7 @@ const Home = () => {
             <p className="card-profession">Data Scientist</p>
             <p className="card-experience">Experience: 7 years</p>
             <p className="card-rating">Rating: {generateStars(4.8)}</p>
+            <button className="swap-button">Swap</button> {/* Green swap button */}
           </div>
         </div>
         {/* Card 3 */}
@@ -51,6 +53,7 @@ const Home = () => {
             <p className="card-profession">Web Developer</p>
             <p className="card-experience">Experience: 3 years</p>
             <p className="card-rating">Rating: {generateStars(4.2)}</p>
+            <button className="swap-button">Swap</button> {/* Green swap button */}
           </div>
         </div>
       </div>

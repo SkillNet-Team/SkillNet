@@ -78,3 +78,18 @@
 .star-icon {
   color: #FFD700; /* Golden yellow color */
 }
+/* Swap button styles */
+.swap-button {
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  width: 100px;
+  cursor: pointer;
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.swap-button:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
