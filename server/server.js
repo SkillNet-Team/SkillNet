@@ -4,6 +4,9 @@ const users_api = require('./views/user-routes');
 app.use("/api/users", users_api);
 require("dotenv").config();
 const mongoose = require("mongoose");
+const cors = require('cors');
+
+app.use(cors());
 
 // Define your API route handler
 app.get("/api", (req, res) => {
