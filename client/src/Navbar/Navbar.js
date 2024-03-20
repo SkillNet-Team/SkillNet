@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../Images/logo.png';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSignOutAlt, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
@@ -48,12 +49,12 @@ const Navbar = ({ isLoggedIn, handleLogin, handleLogout }) => {
       </div>
       {isLoggedIn ? (
         <>
-          <ul className="navbar-menu">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/aboutus">About Us</a></li>
-            <li><a href="/resources">Resources</a></li>
-            <li><a href="/community">Community</a></li>
-          </ul>
+         <ul className="navbar-menu">
+  <li><Link to="/home">Home</Link></li>
+  <li><Link to="/aboutus">About Us</Link></li>
+  <li><Link to="/resources">Resources</Link></li>
+  <li><Link to="/community">Community</Link></li>
+</ul>
           <div className="navbar-search">
             <input type="text" placeholder="Search" />
             <button>Search</button>
