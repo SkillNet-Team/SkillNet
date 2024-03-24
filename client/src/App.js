@@ -13,10 +13,10 @@ function App() {
   const [backendData, setBackendData] = useState([]);
 
   useEffect(() => {
-    fetch("/api")
+    fetch("/api/users")
       .then(response => response.json())
       .then(data => {
-        setBackendData(data.users);
+        setBackendData(data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -50,7 +50,7 @@ function App() {
                   <p>Start building SkillNet</p>
                 ) : (
                   backendData.map((user, i) => (
-                    <p key={i}>{user}</p>
+                    <p className="user-display" key={i}>{user.firstName} {user.lastName} | {user.email}</p>
                   ))
                 )}
               </div>
