@@ -1,8 +1,8 @@
 const User = require("../models/user-model");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// GET /api/users/
+// GET /api/users
 async function getUsers(req, res) {
     const users = await User.find({}).sort({createdAt: -1});
 
@@ -13,6 +13,8 @@ async function getUsers(req, res) {
 // GET /api/users/:id
 async function getUser(req, res) {
     const {id} = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message: "No such user!"});
 
     const user = await User.findById(id);
 
