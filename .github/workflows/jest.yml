@@ -21,17 +21,17 @@ jobs:
       run: npm test 
       working-directory: client
 
+    - name: Run frontend
+      run: npm start &
+      working-directory: client
+
     - name: Run backend
       run: npm install
       working-directory: server
       
     - name: Run backend
-      run: npm run dev
+      run: npm run dev &
       working-directory: server
-      
-    - name: Run frontend
-      run: npm start &
-      working-directory: client
 
       
     - name: Install Cypress
