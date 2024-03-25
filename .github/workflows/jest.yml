@@ -24,9 +24,14 @@ jobs:
     - name: Install Cypress
       run: npm install cypress --save-dev
 
+    - name: Run backend
+      run: npm run dev
+      working-directory: server
+      
     - name: Run frontend
-      run: npm start
+      run: npm start &
       working-directory: client
+      
     # Run Cypress tests
     - name: Run Cypress tests
       run: npx cypress run --headless
