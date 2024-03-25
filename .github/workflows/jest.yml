@@ -20,7 +20,6 @@ jobs:
     - name: Run Integration jest tests
       run: npm test 
       working-directory: client
-    - name: get Integration test coverage reports
-      run: npx jest --coverage
+  
       
    
