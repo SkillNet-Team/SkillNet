@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: npm install -g npm && npm install
     - name: Run Integration jest tests
-      run: pnpm test 
+      run: npm test 
    
     - name: get Integration test coverage reports
       run: npx jest --coverage
