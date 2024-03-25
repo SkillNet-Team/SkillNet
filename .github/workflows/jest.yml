@@ -16,9 +16,11 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm install -g npm && npm install
+      working-directory: client
     - name: Run Integration jest tests
       run: npm test 
-   
+      working-directory: client
     - name: get Integration test coverage reports
       run: npx jest --coverage
+      
    
