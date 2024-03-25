@@ -45,6 +45,8 @@ async function loginUser(req, res) {
 // POST /api/users/signup
 async function signupUser(req, res) {
     try {
+        console.log("here");
+        // console.log(req)
         const {email, firstName, lastName, password, confirmPassword} = req.body;
         if(!(password == confirmPassword)) throw new Error("Passwords don't match!");
         const user = await User.create({email, firstName, lastName, password});
