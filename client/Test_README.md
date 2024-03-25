@@ -1,9 +1,7 @@
 # How to run the project:
 
 - Clone the repository
-- Make sure to have the .env file under server folder which have these 2 lines:
-  MONGODB_URI = mongodb+srv://admin:skillnetadmin123@skillnet.6yk66q8.mongodb.net/skillnet-db?retryWrites=true&w=majority&appName=SkillNet
-  PORT=5000
+
 
 - In the terminal go to client directory -> npm install -> npm start
 - Open another terminal go to server directory -> npm install -> npm run dev
