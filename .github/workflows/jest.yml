@@ -26,7 +26,7 @@ jobs:
 
     # Run Cypress tests
     - name: Run Cypress tests
-      run: npx cypress run
+      run: npx cypress run --headless
       working-directory: client
       
    
