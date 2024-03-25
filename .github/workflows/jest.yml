@@ -21,9 +21,10 @@ jobs:
       run: npm test 
       working-directory: client
 
-    - name: Install Cypress
-      run: npm install cypress --save-dev
-
+    - name: Run backend
+      run: npm install
+      working-directory: server
+      
     - name: Run backend
       run: npm run dev
       working-directory: server
@@ -31,6 +32,10 @@ jobs:
     - name: Run frontend
       run: npm start &
       working-directory: client
+
+      
+    - name: Install Cypress
+      run: npm install cypress --save-dev
       
     # Run Cypress tests
     - name: Run Cypress tests
