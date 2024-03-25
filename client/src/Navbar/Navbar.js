@@ -29,12 +29,12 @@ const Navbar = () => {
       </div>
       <ul className="navbar-menu">
         <li><a href="/home">Home</a></li>
-        <li><a href="/aboutus">About Us</a></li>
+        <li><a href="/aboutus" data-testid="about-us-link">About Us</a></li>
         <li><a href="/resources">Resources</a></li>
         <li><a href="/community">Community</a></li>
       </ul>
       <div className="navbar-search">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" data-testid="search-bar" />
         <button>Search</button>
       </div>
       <div className="navbar-profile">
