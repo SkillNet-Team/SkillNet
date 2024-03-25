@@ -2,9 +2,9 @@
 name: Jest Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ Myesha_Test_Assignment6, master ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ Myesha_Test_Assignment6, master ]
 jobs:
   test:
     timeout-minutes: 60
