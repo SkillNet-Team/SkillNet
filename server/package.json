@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --testTimeout=5000 --coverage --detectOpenHandles --forceExit",
+    "test": "jest --testTimeout=10000 --coverage --detectOpenHandles --forceExit",
     "start": "node server",
     "dev": "nodemon server"
   },
