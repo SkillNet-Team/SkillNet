@@ -1,0 +1,45 @@
+ 
+name: Jest Tests
+on:
+  push:
+    branches: [ main, master, Myesha_test ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm install -g npm && npm install
+      working-directory: client
+    - name: Run Integration jest tests
+      run: npm test 
+      working-directory: client
+
+    - name: Run frontend
+      run: npm start &
+      working-directory: client
+
+    - name: Run backend
+      run: npm install
+      working-directory: server
+      
+    - name: Run backend
+      run: npm run dev &
+      working-directory: server
+
+      
+    - name: Install Cypress
+      run: npm install cypress --save-dev
+      
+    # Run Cypress tests
+    - name: Run Cypress tests
+      run: npx cypress run --headless
+      working-directory: client
+      
+   

@@ -24,7 +24,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(formData);
 
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
+    const response = await fetch("http://localhost:5000/api/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData)
@@ -46,6 +46,7 @@ const SignUp = () => {
             <input
               type="text"
               name="firstName"
+              aria-label="First Name"
               placeholder="First Name"
               value={formData.firstName}
               onChange={handleChange}
@@ -54,6 +55,7 @@ const SignUp = () => {
             <input
               type="text"
               name="lastName"
+              aria-label="Last Name"
               placeholder="Last Name"
               value={formData.lastName}
               onChange={handleChange}
@@ -62,6 +64,7 @@ const SignUp = () => {
             <input
               type="email"
               name="email"
+              aria-label="Email"
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
@@ -70,6 +73,7 @@ const SignUp = () => {
             <input
               type="password"
               name="password"
+              aria-label="Password"
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
@@ -78,12 +82,13 @@ const SignUp = () => {
             <input
               type="password"
               name="confirmPassword"
+              aria-label="Confirm Password"
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleChange}
               required
             />
-            <button type="submit">Sign Up</button>
+            <button type="submit">sign up</button>
           </form>
           <p>Already have an account? <Link to="/login">Log In</Link></p>
         </>

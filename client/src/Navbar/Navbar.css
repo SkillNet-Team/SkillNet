@@ -1,3 +1,4 @@
+/* Navbar styles */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -5,7 +6,6 @@
   padding: 10px 40px; /* Increased padding for wider navbar */
   background-color: #D1FDB7;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 0;
 }
 
 .navbar-logo img {
@@ -71,6 +71,11 @@
   background-color: #aaa; /* Change background color on hover */
 }
 
+/* Dark mode styles */
+.dark-mode {
+  background-color: #333; /* Change background color for dark mode */
+  color: #fff; /* Change text color for better readability */
+}
 .dropbtn {
   background-color: transparent;
   border: none;
@@ -122,8 +127,3 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-
-
-
-
