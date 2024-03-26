@@ -42,7 +42,7 @@ async function signupUser(req, res) {
     } catch (error) {
         console.error(error);
         if (error.code === 11000) {
-            res.status(400).send({message: "Email already exists."});
+            res.status(400).send({message: "This email address already has an account."});
         }
         else {
             res.status(500).send(error);
