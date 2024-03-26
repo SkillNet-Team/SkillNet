@@ -39,11 +39,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-profile">
         <div className="dropdown">
-          <button onClick={toggleDropdown} className="dropbtn">
+        <button className="dropbtn" onClick={toggleDropdown} data-testid="dropdown-toggle">
             <FontAwesomeIcon icon={faUser} size="2x" className="user-icon" />
           </button>
           {isDropdownOpen && (
-            <div className="dropdown-content" onClick={handleDropdownClick}>
+            <div className="dropdown-content" onClick={handleDropdownClick} data-testid="dropdown-content">
               <a href="/personalprofile">Profile</a>
               <button onClick={handleLogout}>Log Out</button>
             </div>
