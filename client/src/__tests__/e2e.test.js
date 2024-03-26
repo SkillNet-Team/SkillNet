@@ -1,3 +1,5 @@
+//End to end test
+
 const { chromium } = require('playwright');
 
 describe('End-to-End Signup Test', () => {
