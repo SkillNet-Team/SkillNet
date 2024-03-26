@@ -1,5 +1,5 @@
 const User = require("../models/user-model");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 // GET /api/users/
@@ -27,20 +27,11 @@ async function loginUser(req, res) {
     if (!user) return res.status(400).json({message: "User not found"});
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
-        res.status(201).json({email, firstName: user.firstName, lastName: user.lastName});
+        res.status(200).json({email, firstName: user.firstName, lastName: user.lastName});
     } else {
         res.status(400).json({message: "Invalid credentials"});
     }
 }
-
-// OG Function
-/* async function signupUser(req, res) {
-    console.log(req);
-    console.log(req.body);
-    const {email, username, password} = req.body;
-    const user = await User.create({email, username, password});
-    res.status(200).json({email, username});
-} */
 
 // POST /api/users/signup
 async function signupUser(req, res) {
