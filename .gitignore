@@ -58,3 +58,7 @@ terraform.rc
 
 node_modules
 .env
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

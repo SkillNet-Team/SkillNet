@@ -26,10 +26,10 @@ mongoose.connect(process.env.MONGODB_URI)
                 console.log(`Listening on port ${process.env.PORT}...`);
             });
         }
-
-        // Export app
-        module.exports = app;
     })
     .catch((err) => {
         console.log(err);
     });
+
+// Export app
+module.exports = app;
