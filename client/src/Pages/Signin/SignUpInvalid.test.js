@@ -56,3 +56,4 @@ describe('Signup integration tests', () => {
     expect(getByText('Already have an account?')).toBeInTheDocument();
   });
 });
+
