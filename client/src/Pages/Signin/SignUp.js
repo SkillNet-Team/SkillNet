@@ -11,6 +11,7 @@ const SignUp = () => {
     confirmPassword: ''
   });
   const [accepted, setAccepted] = useState(false); // Boolean state to change page content if data was processed correctly
+  const [error, setError] = useState(''); // New state to handle errors
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,18 +23,29 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     console.log(formData);
-
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
-    const data = await response.json();
-
-    if (response.ok) {
-      setAccepted(true);
-      console.log(data);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json();
+  
+      if (response.ok) {
+        setAccepted(true);
+        console.log(data);
+      }
+    }
+    catch (error) {
+      console.error('Error during fetching', error);
+      setError("Failed to connect to the server. Please check your connection and try again.");
     }
   };
 
@@ -42,6 +54,7 @@ const SignUp = () => {
       {!(accepted) && (
         <>
           <h2>Sign Up</h2>
+          {error && <div class-name="error-message">{error}</div>}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
