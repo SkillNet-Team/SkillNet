@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css'; // Import the CSS file for styling
-import p1Image from '../../Images/p1.jpg';
+import p1Image from '../../Images/p1.jpg'
 import p2Image from '../../Images/p2.jpg';
 import p3Image from '../../Images/p3.jpg';
 // Import the image

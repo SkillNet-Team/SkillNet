@@ -1,0 +1,109 @@
+/* Home container styles */
+.req-container {
+    padding: 20px;
+  }
+  
+  /* Title styles */
+  .req-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Card container styles */
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Card styles */
+  /* Card styles */
+  .card {
+    width: 30%;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease; /* Add transition for smooth animation */
+  }
+  
+  /* Apply hover effect */
+  .card:hover {
+    transform: scale(1.05); /* Increase scale on hover */
+  }
+  
+  
+  /* Card image styles */
+  /* Card image styles */
+  .card-image {
+    width: 60%; /* Adjust the width as needed */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: block; /* Ensure the image behaves as a block element */
+    margin-left: auto; /* Center the image horizontally */
+    margin-right: auto; /* Center the image horizontally */
+  }
+  
+  
+  
+  /* Card details styles */
+  .card-details {
+    text-align: center;
+  }
+  
+  /* Card name styles */
+  .card-name {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  /* Card profession styles */
+  .card-profession {
+    font-style: italic;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  
+  /* Card experience styles */
+  .card-experience {
+    margin-bottom: 5px;
+  }
+  
+  /* Card rating styles */
+  .card-rating {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Star icon styles */
+  .star-icon {
+    color: #FFD700; /* Golden yellow color */
+  }
+  /* Swap button styles */
+  .button {
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    width: 100px;
+    cursor: pointer;
+    margin-top: 10px; /* Adjust the margin as needed */
+    margin-right: 10px; /* Add margin between Accept and Delete button */
+  }
+
+  .d-button{
+   
+        background-color: #fd1010; /* Green color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        width: 100px;
+        cursor: pointer;
+        margin-top: 10px; /* Adjust the margin as needed */
+      
+  }
+  
+  .button:hover {
+    background-color: #45a049; /* Darker green color on hover */
+  }

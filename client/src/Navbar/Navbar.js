@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../Images/logo.png';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Import Link component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSignOutAlt, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = ({ isLoggedIn, handleLogin, handleLogout }) => {
+const Navbar = ({ handleLogin, handleLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
 
@@ -20,17 +20,20 @@ const Navbar = ({ isLoggedIn, handleLogin, handleLogout }) => {
 
   const toggleDarkMode = () => {
     setIsDarkMode(prevMode => !prevMode);
-    const body = document.body;
-    if (body.classList.contains('dark-mode')) {
-      body.classList.remove('dark-mode');
-    } else {
-      body.classList.add('dark-mode');
-    }
+    localStorage.setItem('darkMode', JSON.stringify(!isDarkMode)); // Save mode to local storage
   };
+  
 
   useEffect(() => {
-    document.body.classList.toggle('dark-mode', isDarkMode);
+    const body = document.body;
+    if (isDarkMode) {
+      body.classList.add('dark-mode');
+    } else {
+      body.classList.remove('dark-mode');
+    }
   }, [isDarkMode]);
+  
+  
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -47,41 +50,34 @@ const Navbar = ({ isLoggedIn, handleLogin, handleLogout }) => {
           <img src={logo} alt="Logo" />
         </a>
       </div>
-      {isLoggedIn ? (
-        <>
-         <ul className="navbar-menu">
-  <li><Link to="/home">Home</Link></li>
-  <li><Link to="/aboutus">About Us</Link></li>
-  <li><Link to="/resources">Resources</Link></li>
-  <li><Link to="/community">Community</Link></li>
-</ul>
-          <div className="navbar-search">
-            <input type="text" placeholder="Search" />
-            <button>Search</button>
-          </div>
-          <div className="navbar-profile">
-            <div className="dropdown">
-              <button onClick={toggleDropdown} className="dropbtn">
-                <FontAwesomeIcon icon={faUser} size="2x" className="user-icon" />
-              </button>
-              {isDropdownOpen && (
-                <div className="dropdown-content" onClick={handleDropdownClick}>
-                  <a href="/personalprofile">Profile</a>
-                  <button onClick={handleLogout}>Log Out</button>
-                </div>
-              )}
-            </div>
-          </div>
-          {/* Adjusted dark mode button */}
-          <button onClick={toggleDarkMode} className="dark-mode-button" data-testid="dark-mode-button" data-dark-mode={isDarkMode}>
-            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} size="1x" /> {/* Adjusted size to 1x */}
+      <ul className="navbar-menu">
+        <li><Link to="/home">Home</Link></li>
+        <li><Link to="/swaprequests">Swap Requests</Link></li>
+        <li><Link to="/aboutus">About Us</Link></li>
+        <li><Link to="/resources">Resources</Link></li>
+        <li><Link to="/community">Community</Link></li>
+      </ul>
+      <div className="navbar-search">
+        <input type="text" placeholder="Search" />
+        <button>Search</button>
+      </div>
+      <div className="navbar-profile">
+        <div className="dropdown">
+          <button onClick={toggleDropdown} className="dropbtn">
+            <FontAwesomeIcon icon={faUser} size="2x" className="user-icon" />
           </button>
-        </>
-      ) : (
-        <div className="navbar-login">
-          <button onClick={handleLogin}>Login</button>
+          {isDropdownOpen && (
+            <div className="dropdown-content" onClick={handleDropdownClick}>
+              <a href="/personalprofile">Profile</a>
+              <button onClick={handleLogout}>Log Out</button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
+      {/* Adjusted dark mode button */}
+      <button onClick={toggleDarkMode} className="dark-mode-button" data-testid="dark-mode-button" data-dark-mode={isDarkMode}>
+        <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} size="1x" /> {/* Adjusted size to 1x */}
+      </button>
     </nav>
   );
 };
