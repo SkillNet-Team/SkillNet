@@ -83,3 +83,4 @@ const Navbar = ({ handleLogin, handleLogout }) => {
 };
 
 export default Navbar;
+
