@@ -42,6 +42,10 @@ const SignUp = () => {
         setAccepted(true);
         console.log(data);
       }
+      else {
+        setError(data.message);
+        return;
+      }
     }
     catch (error) {
       console.error('Error during fetching', error);

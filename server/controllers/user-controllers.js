@@ -37,12 +37,16 @@ async function loginUser(req, res) {
 async function signupUser(req, res) {
     try {
         const {email, firstName, lastName, password, confirmPassword} = req.body;
-        if(!(password == confirmPassword)) throw new Error("Passwords don't match!");
         const user = await User.create({email, firstName, lastName, password});
         res.status(201).json({email, firstName, lastName});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Error creating user" });
+        if (error.code === 11000) {
+            res.status(400).send({message: "This email address already has an account."});
+        }
+        else {
+            res.status(500).send(error);
+        }
     }
 }
 
