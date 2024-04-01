@@ -20,6 +20,13 @@
     max-width: 800px;
     width: 100%;
   }
+  /* Dark mode styles */
+.dark-mode .profile-container {
+  background-color: #333333;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
   
   /* Your existing CSS styles */
   .profile-bio h3 {

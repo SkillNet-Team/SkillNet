@@ -1,9 +1,9 @@
 import React from 'react';
 import './PersonalProfile.css'; // Importing CSS file
 
-export default function PersonalProfile() {
+export default function PersonalProfile({ isDarkMode }) {
   return (
-    <section className="profile-section">
+    <section className={isDarkMode ? "profile-section dark-mode" : "profile-section"}>
       <div className="profile-container">
         <div className="profile-info">
           <div className="profile-picture">

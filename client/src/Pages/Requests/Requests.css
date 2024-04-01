@@ -25,6 +25,12 @@
     padding: 20px;
     transition: transform 0.3s ease; /* Add transition for smooth animation */
   }
+ /* Dark mode styles */
+.dark-mode .card {
+  background-color: #333; /* Dark mode background color */
+  color: #fff; /* Dark mode text color */
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Adjust shadow color for dark mode */
+}
 
   /* Apply hover effect */
   .card:hover {

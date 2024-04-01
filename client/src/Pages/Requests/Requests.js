@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Requests.css'; // Import the CSS file for styling
 import p1Image from '../../Images/p1.jpg';
 import p2Image from '../../Images/p2.jpg';
 import p3Image from '../../Images/p3.jpg';
 // Import the image
 
-const SwapRequests = () => {
+const SwapRequests = ({ isDarkMode }) => {
   const [acceptedRequests, setAcceptedRequests] = useState([]);
 
   // Helper function to generate star icons based on rating
@@ -26,6 +26,16 @@ const SwapRequests = () => {
     setAcceptedRequests([...acceptedRequests, name]);
     alert(`You accepted the request for ${name}. Start planning your sessions now!`);
   };
+
+  // useEffect to apply dark mode styles when the mode changes
+  useEffect(() => {
+    const body = document.body;
+    if (isDarkMode) {
+      body.classList.add('dark-mode');
+    } else {
+      body.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
 
   return (
     <div className="req-container">
