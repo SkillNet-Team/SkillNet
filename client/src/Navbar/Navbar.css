@@ -1,3 +1,4 @@
+/* Navbar styles */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -5,7 +6,6 @@
   padding: 10px 40px; /* Increased padding for wider navbar */
   background-color: #D1FDB7;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 0;
 }
 
 .navbar-logo img {
@@ -18,15 +18,14 @@
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif; /* Apply the custom font */
-  justify-content: space-between; /* Distribute items evenly */
 }
 
 .navbar-menu li {
-  margin: 50px; /* Adjust the margin between items */
+  margin: 0 10px; /* Adjust the margin between items */
 }
 
-.navbar-menu li:last-child {
-  margin-right: 0;
+.navbar-menu li:first-child {
+  margin-left: 0;
 }
 
 .navbar-menu a {
@@ -39,22 +38,25 @@
 .navbar-search {
   display: flex;
   align-items: center;
+  margin-right: 20px; /* Adjusted margin */
 }
 
 .navbar-search input[type="text"] {
-  padding: 10px; /* Increased padding for input */
+  padding: 15px; /* Increased padding for input */
   border: 1px solid #ccc;
   border-radius: 4px;
+  max-width: 300px;
 }
 
 .navbar-search button {
-  margin-left: 15px; /* Increased margin */
-  padding: 10px 15px; /* Increased padding for button */
+  padding: 15px; /* Increased padding for button */
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100px;
+  margin-left: 10px; /* Adjusted margin */
 }
 
 .user-icon {
@@ -71,6 +73,37 @@
   background-color: #aaa; /* Change background color on hover */
 }
 
+/* Dark mode styles */
+.dark-mode {
+  background-color: #333; /* Change background color for dark mode */
+  color: #fff; /* Change text color for better readability */
+}
+
+/* Adjusted dark mode button styles */
+.dark-mode-button {
+  padding: 10px; /* Reduced padding for smaller button */
+  background-color: #7F25DA;
+  border: none;
+  cursor: pointer;
+  width: 80px;
+  margin-right: 10px; /* Adjusted margin */
+  margin-left: 10px;
+}
+
+.dark-mode-button:hover {
+  background-color: #f3e40b; /* Change background color on hover */
+}
+
+.dark-mode-button:focus {
+  outline: none; /* Remove focus outline */
+}
+
+/* Adjusted search box styles */
+.navbar-search input[type="text"] {
+  flex-grow: 1; /* Grow to take up remaining space */
+}
+
+/* Dropdown styles */
 .dropbtn {
   background-color: transparent;
   border: none;
@@ -122,8 +155,3 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-
-
-
-
