@@ -25,16 +25,10 @@ function App() {
   }, []);
 
   // Function to handle login
-  const handleLogin = () => {
-    // Logic to handle login
-    setIsLoggedIn(true);
-  };
+  const handleLogin = () => setIsLoggedIn(true);
 
   // Function to handle logout
-  const handleLogout = () => {
-    // Logic to handle logout
-    setIsLoggedIn(false);
-  };
+  const handleLogout = () => setIsLoggedIn(false);
 
   return (
     <Router>
@@ -59,7 +53,7 @@ function App() {
             <Route path="/join" element={<Join />} /> 
             <Route path="/home" element={<Home />} />
             <Route path="/signup" element={<SignUp />} /> 
-            <Route path="/login" element={<Login />} /> 
+            <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
             <Route path="/personalprofile" element={<PersonalProfile />} /> 
             <Route path="/swaprequests" element={<SwapRequests />} /> {/* Add Route for SwapRequests */}
           </Routes>
