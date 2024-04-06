@@ -1,4 +1,5 @@
 ##High-level Diagram
+![High-level Diagram](client/src/images/highlevelDiagram.png)
 
 The high-level diagram provides an overview of the architecture of the SkillNet application, depicting the flow of data and interactions between different components.
 
