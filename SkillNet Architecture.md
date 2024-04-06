@@ -1,4 +1,5 @@
-##High-level Diagram
+## High-level Diagram
+
 ![High-level Diagram](client/src/Images/highlevelDiagram.png)
 
 The high-level diagram provides an overview of the architecture of the SkillNet application, depicting the flow of data and interactions between different components.
@@ -14,7 +15,9 @@ The high-level diagram provides an overview of the architecture of the SkillNet 
 Overall, this architecture enables SkillNet to provide a seamless user experience by efficiently managing client-server communication, routing, and data storage.
 
 
-##Entity Relationship Diagram
+## Entity Relationship Diagram
+
+![Entity Relationship Diagram](client/src/Images/entityDiagram.png)
 
 The entity diagram displays the structure of the database schema for the SkillNet application.
 
@@ -27,6 +30,8 @@ The entity diagram displays the structure of the database schema for the SkillNe
 This schema enables the SkillNet application to store user profiles, their associated skills, and facilitate communication between users through messages.
 
 
-##Call Sequence Diagram
+## Call Sequence Diagram
+
+![Call Sequence Diagram](client/src/Images/callDiagram.png)
 
 The process starts when "User A" sends a swap request to "User B" using the SkillNet app. Upon receiving the request, "User B" accepts it. This action prompts "User A" to send a message to "User B" via the app. The SkillNet app checks for any new messages, retrieves them for "User A", and delivers them. As a result, "User A" receives and reads the message from "User B". This flow ensures smooth communication between users after a swap request is accepted.
