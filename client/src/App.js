@@ -14,7 +14,7 @@ function App() {
   const [backendData, setBackendData] = useState([]);
 
   useEffect(() => {
-    fetch("/api/users")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users`)
       .then(response => response.json())
       .then(data => {
         setBackendData(data);
