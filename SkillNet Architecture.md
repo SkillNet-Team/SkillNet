@@ -34,4 +34,15 @@ This schema enables the SkillNet application to store user profiles, their assoc
 
 ![Call Sequence Diagram](client/src/Images/callDiagram.png)
 
-The process starts when "User A" sends a swap request to "User B" using the SkillNet app. Upon receiving the request, "User B" accepts it. This action prompts "User A" to send a message to "User B" via the app. The SkillNet app checks for any new messages, retrieves them for "User A", and delivers them. As a result, "User A" receives and reads the message from "User B". This flow ensures smooth communication between users after a swap request is accepted.
+In this call sequence diagram:
+
+- User A sends a swap request to User B.
+- SkillNet App receives the swap request and processes it.
+- SkillNet App notifies User B about the swap request.
+- User B accepts the swap request.
+- SkillNet App sends a message to User A to initiate the conversation.
+- User A checks for new messages.
+- SkillNet App retrieves any new messages for User A.
+- User A receives the new messages.
+- User A views the message from User B.
+This sequence illustrates the flow of actions and communication between the users and the SkillNet application when sending a message after a swap request is accepted.
