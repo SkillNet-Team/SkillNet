@@ -17,7 +17,7 @@ Overall, this architecture enables SkillNet to provide a seamless user experienc
 
 ## Entity Relationship Diagram
 
-![Entity Relationship Diagram](client/src/Images/entityDiagram.png)
+![Entity Relationship Diagram](client/src/Images/entityrDiagram.png)
 
 The entity diagram displays the structure of the database schema for the SkillNet application.
 
