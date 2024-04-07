@@ -1,6 +1,6 @@
 # SkillNet Architecture
 
-## High-level component diagram:
+## High-level component diagram
 
 The high-level component diagram of SkillNet web application displays the key parts such as the React UI, Express.js server, and MongoDB database, demonstrating how they work together including sending data back and forth and managing user interactions, offering a simple view of how the app functions.
 
