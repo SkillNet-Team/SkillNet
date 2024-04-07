@@ -21,11 +21,13 @@ Overall, this architecture enables SkillNet to provide a seamless user experienc
 
 The entity diagram displays the structure of the database schema for the SkillNet application.
 
-- User: Represents the user profile with attributes such as unique_id (ObjectId), firstName, lastName, email, password, and an array of skills. Each user has a unique identifier, and they can have multiple skills associated with them.
+- User and Skill:
+Many-to-Many Relationship: Multiple users can possess the same skill, and a user can possess multiple skills.
+Relationship Representation: Each user document contains a list (or array) of skill identifiers, indicating the skills possessed by that user. Similarly, each skill document may contain a list (or array) of user identifiers, representing the users who possess that skill.
 
-- Skill: Represents a skill possessed by a user. It contains attributes such as unique_id (ObjectId), name, and a reference to the user who owns the skill through the user_id field. Each skill is uniquely identified, and it is associated with one user.
-
-- Message: Represents a message exchanged between users. It includes attributes such as unique_id (ObjectId), sender_id, receiver_id, content, and timestamp. Each message has a unique identifier and is associated with one sender and one receiver.
+- User and Message:
+Many-to-Many Relationship: Each user can send and receive multiple messages.
+Relationship Representation: This relationship is represented by the sender_id and receiver_id fields in the Message entity. Each message has one sender (user) and one receiver (user). Therefore, each user can be associated with multiple messages as both sender and receiver.
 
 This schema enables the SkillNet application to store user profiles, their associated skills, and facilitate communication between users through messages.
 
