@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://skillnet-api-worx.onrender.com/",
   "private": true,
   "dependencies": {
     "@fontsource/montserrat": "^5.0.17",
