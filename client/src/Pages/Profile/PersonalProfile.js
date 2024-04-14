@@ -5,6 +5,8 @@ import './PersonalProfile.css'; // Importing CSS file
 
 export default function PersonalProfile({ isDarkMode }) {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isSendingMessage, setIsSendingMessage] = useState(false); // State for sending message
+  const [message, setMessage] = useState(''); // State to store the message
   const [profileData, setProfileData] = useState({
     name: 'Marie Horwitz',
     occupation: 'Web Designer',
@@ -84,8 +86,14 @@ export default function PersonalProfile({ isDarkMode }) {
   };
 
   const handleSendMessage = () => {
-    // Add functionality to send a message
-    console.log("Sending a message...");
+    setIsSendingMessage(true); // Display input box for sending message
+  };
+
+  const sendMessage = () => {
+    // Send message functionality goes here
+    console.log("Message sent:", message);
+    setIsSendingMessage(false); // Hide input box after sending message
+    setMessage(''); // Reset message input
   };
 
   return (
@@ -178,7 +186,7 @@ export default function PersonalProfile({ isDarkMode }) {
             ))}
           </div>
         </div>
-        {!isEditMode && (
+        {!isEditMode && !isSendingMessage && (
           <div className="send-request-container">
             <button className="send-request-button" onClick={handleSendSwapRequest}>
               Send Swap Request
@@ -186,6 +194,18 @@ export default function PersonalProfile({ isDarkMode }) {
             <button className="send-message-button" onClick={handleSendMessage}>
               Send Message
             </button>
+          </div>
+        )}
+        {isSendingMessage && (
+          <div className="send-message-container">
+            <input
+              type="text"
+              placeholder="Type your message..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button onClick={sendMessage}>Send</button>
+            <button onClick={() => setIsSendingMessage(false)}>Cancel</button>
           </div>
         )}
       </div>

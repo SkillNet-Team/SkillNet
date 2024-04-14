@@ -3,9 +3,9 @@ import './Navbar.css';
 import logo from '../Images/logo.png';
 import { Link } from 'react-router-dom'; // Import Link component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSun, faMoon, faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Import envelope icon for messages
 
-const Navbar = ({ handleLogin, handleLogout }) => {
+const Navbar = ({ isLoggedIn, handleLogin, handleLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
 
@@ -23,7 +23,6 @@ const Navbar = ({ handleLogin, handleLogout }) => {
     localStorage.setItem('darkMode', JSON.stringify(!isDarkMode)); // Save mode to local storage
   };
 
-  
   useEffect(() => {
     const body = document.body;
     if (isDarkMode) {
@@ -32,8 +31,6 @@ const Navbar = ({ handleLogin, handleLogout }) => {
       body.classList.remove('dark-mode');
     }
   }, [isDarkMode]);
-
-
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -69,6 +66,7 @@ const Navbar = ({ handleLogin, handleLogout }) => {
           {isDropdownOpen && (
             <div className="dropdown-content" onClick={handleDropdownClick}>
               <a href="/personalprofile">Profile</a>
+              <a href="/messages">Messages</a> {/* Add Messages option */}
               <button onClick={handleLogout}>Log Out</button>
             </div>
           )}
