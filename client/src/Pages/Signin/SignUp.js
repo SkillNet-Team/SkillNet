@@ -10,6 +10,7 @@ const SignUp = () => {
     password: '',
     confirmPassword: ''
   });
+
   const [accepted, setAccepted] = useState(false); // Boolean state to change page content if data was processed correctly
   const [error, setError] = useState(''); // New state to handle errors
 
@@ -36,6 +37,7 @@ const SignUp = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       });
+      
       const data = await response.json();
   
       if (response.ok) {

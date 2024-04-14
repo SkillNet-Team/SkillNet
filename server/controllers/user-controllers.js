@@ -24,12 +24,12 @@ async function getUser(req, res) {
 async function loginUser(req, res) {
     const {email, password} = req.body;
     const user = await User.findOne({email});
-    if (!user) return res.status(400).json({message: "User not found"});
+    if (!user) return res.status(400).json({message: "Incorrect email or password."});
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
         res.status(200).json({email, firstName: user.firstName, lastName: user.lastName});
     } else {
-        res.status(400).json({message: "Invalid credentials"});
+        res.status(400).json({message: "Incorrect email or password."});
     }
 }
 
