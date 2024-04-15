@@ -1,0 +1,60 @@
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px; /* Increased padding for wider navbar */
+  background-color: #D1FDB7;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar-menu {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif; /* Apply the custom font */
+}
+
+.navbar-menu li {
+  margin: 0 10px; /* Adjust the margin between items */
+}
+
+/* .navbar-menu li:first-child {
+  margin-left: 0;
+} */
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px; /* Adjust font size if needed */
+}
+
+
+.user-icon {
+  display: inline-block;
+  font-size: 24px; /* Adjust the size as needed */
+  border-radius: 100%; /* Make it circular */
+  padding: 10px; /* Add padding to make it bigger */
+  text-decoration: none; /* Remove underline */
+  color: #011283; /* Set icon color */
+}
+
+
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #333; /* Change background color for dark mode */
+  color: #fff; /* Change text color for better readability */
+}
+
+
+.footer{
+  padding-top: 100px; 
+}
+
+.copyright_text{
+  padding-left: 700px;
+}

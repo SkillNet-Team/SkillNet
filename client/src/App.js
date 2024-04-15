@@ -35,7 +35,6 @@ function App() {
       <div>
         {/* Conditional rendering of Navbar based on login status */}
         <Navbar isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} />
-        
         <div className="container mt-4">
           <Routes>
             <Route path="/" element={ // Adjusted the Route component
@@ -60,6 +59,7 @@ function App() {
         </div>
       </div>
     </Router>
+    
   );
 }
 
