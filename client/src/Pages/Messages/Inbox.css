@@ -1,0 +1,47 @@
+/* Inbox.css */
+
+/* Styles for the container */
+.inbox-container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Styles for the heading */
+.inbox-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Styles for the messages list */
+.messages-list {
+  display: grid;
+  grid-gap: 20px;
+}
+
+/* Styles for individual message items */
+.message-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer; /* Make messages clickable */
+}
+
+/* Styles for message header */
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Styles for message sender */
+.message-sender {
+  font-weight: bold;
+}
+
+
+/* Styles for message content */
+.message-content {
+  margin-top: 10px; /* Add margin above content */
+}
