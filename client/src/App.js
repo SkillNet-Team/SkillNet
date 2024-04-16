@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'; // Import your main CSS file for styling
 import Navbar from './Navbar/Navbar';
@@ -7,11 +7,14 @@ import Home from './Pages/HomePage/Home';
 import PersonalProfile from './Pages/Profile/PersonalProfile';
 import SignUp from './Pages/Signin/SignUp';
 import Login from './Pages/Signin/Login';
-import About from './Pages/AboutUs/About';
-import SwapRequests from './Pages/Requests/Requests'; // Import the SwapRequests component
+import SwapRequests from './Pages/Requests/Requests';
+import Inbox from './Pages/Messages/Inbox';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    // Initialize isLoggedIn state based on local storage
+    return localStorage.getItem('isLoggedIn') === 'true';
+  }); 
   const [backendData, setBackendData] = useState([]);
 
   useEffect(() => {
@@ -26,16 +29,23 @@ function App() {
   }, []);
 
   // Function to handle login
-  const handleLogin = () => setIsLoggedIn(true);
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    localStorage.setItem('isLoggedIn', 'true'); // Store login status in local storage
+  };
 
   // Function to handle logout
-  const handleLogout = () => setIsLoggedIn(false);
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.setItem('isLoggedIn', 'false'); // Store login status in local storage
+  };
 
   return (
     <Router>
       <div>
         {/* Conditional rendering of Navbar based on login status */}
         <Navbar isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} />
+        
         <div className="container mt-4">
           <Routes>
             <Route path="/" element={ // Adjusted the Route component
@@ -52,16 +62,15 @@ function App() {
             } />
             <Route path="/join" element={<Join />} /> 
             <Route path="/home" element={<Home />} />
-            <Route path="aboutus" element={<About />} />
             <Route path="/signup" element={<SignUp />} /> 
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
-            <Route path="/personalprofile" element={<PersonalProfile />} /> 
-            <Route path="/swaprequests" element={<SwapRequests />} /> {/* Add Route for SwapRequests */}
+            <Route path="/personalprofile" element={<PersonalProfile isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
+            <Route path="/swaprequests" element={<SwapRequests />} /> 
+            <Route path="/messages" element={<Inbox />} /> 
           </Routes>
         </div>
       </div>
     </Router>
-    
   );
 }
 
