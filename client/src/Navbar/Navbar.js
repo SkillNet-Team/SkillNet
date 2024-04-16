@@ -58,12 +58,12 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
       <ul className="navbar-menu">
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/swaprequests">Swap Requests</Link></li>
-        <li><Link to="/aboutus">About Us</Link></li>
+        <li><a href="/aboutus" data-testid="about-us-link">About Us</a></li>
         <li><Link to="/resources">Resources</Link></li>
         <li><Link to="/community">Community</Link></li>
       </ul>
       <div className="navbar-search">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" data-testid="search-bar" />
         <button>Search</button>
       </div>
       {/* Conditional rendering of profile icon with dropdown */}

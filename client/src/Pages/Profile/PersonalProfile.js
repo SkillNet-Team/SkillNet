@@ -114,7 +114,7 @@ export default function PersonalProfile({ isDarkMode }) {
           <div className="profile-details">
             {isEditMode ? (
               <form onSubmit={handleSubmit}>
-                <input type="text" name="name" value={profileData.name} onChange={handleChange} />
+                <input type="text" name="name" value={profileData.name} onChange={handleChange}/>
                 <input type="text" name="occupation" value={profileData.occupation} onChange={handleChange} />
                 <input type="text" name="location" value={profileData.location} onChange={handleChange} />
                 <input type="text" name="email" value={profileData.email} onChange={handleChange} />
@@ -151,7 +151,7 @@ export default function PersonalProfile({ isDarkMode }) {
               </form>
             ) : (
               <>
-                <h2 className="profile-name">{profileData.name}</h2>
+                <h2 className="profile-name" data-testid="user-name" >{profileData.name}</h2>
                 <p className="profile-occupation">{profileData.occupation}</p>
                 {/* Display other non-editable profile details */}
                 <p><strong>Location:</strong> {profileData.location}</p>
