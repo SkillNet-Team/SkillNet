@@ -1,0 +1,62 @@
+
+.about-container {
+    text-align: center;
+    align-items: center;
+  }
+
+  /* .about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+   */
+  .image-container {
+    position: relative;
+    display: inline-block;
+    
+  }
+  
+  .background-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    text-align: center;
+  }
+  
+  .text-overlay h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .text-overlay p {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .mission-section {
+    background-color: white; 
+    padding: 40px; /* Add padding for spacing */
+    border-radius: 8px; 
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Add a subtle shadow for depth */
+  }
+  
+  .mission-section h2 {
+    font-size: 28px; 
+    color: black; 
+    margin-bottom: 20px; 
+  }
+  
+  .mission-section p {
+    font-size: 16px; 
+    line-height: 1.5; 
+    color:black; 
+  }
+  
+  

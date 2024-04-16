@@ -7,6 +7,7 @@ import Home from './Pages/HomePage/Home';
 import PersonalProfile from './Pages/Profile/PersonalProfile';
 import SignUp from './Pages/Signin/SignUp';
 import Login from './Pages/Signin/Login';
+import About from './Pages/AboutUs/About';
 import SwapRequests from './Pages/Requests/Requests'; // Import the SwapRequests component
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             } />
             <Route path="/join" element={<Join />} /> 
             <Route path="/home" element={<Home />} />
+            <Route path="aboutus" element={<About />} />
             <Route path="/signup" element={<SignUp />} /> 
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
             <Route path="/personalprofile" element={<PersonalProfile />} /> 
