@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './SignUp.css';
+
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -111,6 +111,7 @@ const SignUp = () => {
         <p>Your account has been created successfully!</p>
       )}
     </div>
+
   );
 };
 

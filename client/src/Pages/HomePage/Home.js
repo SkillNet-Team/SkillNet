@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css'; // Import the CSS file for styling
+import Footer from '../../Footer/Footer';
 import p1Image from '../../Images/p1.jpg'
 import p2Image from '../../Images/p2.jpg';
 import p3Image from '../../Images/p3.jpg';
@@ -20,44 +21,47 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
-      <h2 className="home-title">Skills that match you!</h2>
-      <div className="card-container">
-        {/* Card 1 */}
-        <div className="card">
-          <img src={p1Image} alt="Person 1" className="card-image" />
-          <div className="card-details">
-            <h3 className="card-name">John Doe</h3>
-            <p className="card-profession">Software Engineer</p>
-            <p className="card-experience">Experience: 5 years</p>
-            <p className="card-rating">Rating: {generateStars(4.5)}</p>
-            <button className="swap-button">Swap</button> {/* Green swap button */}
+    <>
+      <div className="home-container">
+        <h2 className="home-title">Skills that match you!</h2>
+        <div className="card-container">
+          {/* Card 1 */}
+          <div className="card">
+            <img src={p1Image} alt="Person 1" className="card-image" />
+            <div className="card-details">
+              <h3 className="card-name">John Doe</h3>
+              <p className="card-profession">Software Engineer</p>
+              <p className="card-experience">Experience: 5 years</p>
+              <p className="card-rating">Rating: {generateStars(4.5)}</p>
+              <button className="swap-button">Swap</button> {/* Green swap button */}
+            </div>
           </div>
-        </div>
-        {/* Card 2 */}
-        <div className="card">
-          <img src={p2Image} alt="Person 2" className="card-image" />
-          <div className="card-details">
-            <h3 className="card-name">Jane Smith</h3>
-            <p className="card-profession">Data Scientist</p>
-            <p className="card-experience">Experience: 7 years</p>
-            <p className="card-rating">Rating: {generateStars(4.8)}</p>
-            <button className="swap-button">Swap</button> {/* Green swap button */}
+          {/* Card 2 */}
+          <div className="card">
+            <img src={p2Image} alt="Person 2" className="card-image" />
+            <div className="card-details">
+              <h3 className="card-name">Jane Smith</h3>
+              <p className="card-profession">Data Scientist</p>
+              <p className="card-experience">Experience: 7 years</p>
+              <p className="card-rating">Rating: {generateStars(4.8)}</p>
+              <button className="swap-button">Swap</button> {/* Green swap button */}
+            </div>
           </div>
-        </div>
-        {/* Card 3 */}
-        <div className="card">
-          <img src={p3Image} alt="Person 3" className="card-image" />
-          <div className="card-details">
-            <h3 className="card-name">Alex Johnson</h3>
-            <p className="card-profession">Web Developer</p>
-            <p className="card-experience">Experience: 3 years</p>
-            <p className="card-rating">Rating: {generateStars(4.2)}</p>
-            <button className="swap-button">Swap</button> {/* Green swap button */}
+          {/* Card 3 */}
+          <div className="card">
+            <img src={p3Image} alt="Person 3" className="card-image" />
+            <div className="card-details">
+              <h3 className="card-name">Alex Johnson</h3>
+              <p className="card-profession">Web Developer</p>
+              <p className="card-experience">Experience: 3 years</p>
+              <p className="card-rating">Rating: {generateStars(4.2)}</p>
+              <button className="swap-button">Swap</button> {/* Green swap button */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div> <Footer></Footer>  </div>
+    </>
   );
 };
 
