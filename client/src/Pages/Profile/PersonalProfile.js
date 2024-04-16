@@ -8,7 +8,8 @@ export default function PersonalProfile({ isDarkMode }) {
   const [isSendingMessage, setIsSendingMessage] = useState(false); // State for sending message
   const [message, setMessage] = useState(''); // State to store the message
   const [profileData, setProfileData] = useState({
-    name: 'Marie Horwitz',
+    firstName: 'Marie',
+    lastName: 'Horwitz',
     occupation: 'Web Designer',
     location: 'New York, USA',
     email: 'info@example.com',
@@ -114,7 +115,8 @@ export default function PersonalProfile({ isDarkMode }) {
           <div className="profile-details">
             {isEditMode ? (
               <form onSubmit={handleSubmit}>
-                <input type="text" name="name" value={profileData.name} onChange={handleChange} />
+                <input type="text" name="firstName" value={profileData.firstName} onChange={handleChange} />
+                <input type="text" name="lastName" value={profileData.lastName} onChange={handleChange} />
                 <input type="text" name="occupation" value={profileData.occupation} onChange={handleChange} />
                 <input type="text" name="location" value={profileData.location} onChange={handleChange} />
                 <input type="text" name="email" value={profileData.email} onChange={handleChange} />
@@ -151,7 +153,7 @@ export default function PersonalProfile({ isDarkMode }) {
               </form>
             ) : (
               <>
-                <h2 className="profile-name">{profileData.name}</h2>
+                <h2 className="profile-name">{profileData.firstName} {profileData.lastName}</h2>
                 <p className="profile-occupation">{profileData.occupation}</p>
                 {/* Display other non-editable profile details */}
                 <p><strong>Location:</strong> {profileData.location}</p>
