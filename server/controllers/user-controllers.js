@@ -14,6 +14,8 @@ async function getUsers(req, res) {
 async function getUser(req, res) {
     const {id} = req.params;
 
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message: "No such user!"});
+
     const user = await User.findById(id);
 
     if(!user) res.status(404).json({ message: "No such user!" });

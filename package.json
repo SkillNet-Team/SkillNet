@@ -5,5 +5,10 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "bcrypt": "^5.1.1",
     "mongod": "^2.0.0"
-  }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.30"
+  },
+  "scripts": {}
 }
