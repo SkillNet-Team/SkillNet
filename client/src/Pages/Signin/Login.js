@@ -22,7 +22,7 @@ const Login = ({ onLoginSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
 
     try {
       const response = await fetch('/api/users/login', {
@@ -35,6 +35,7 @@ const Login = ({ onLoginSuccess }) => {
 
       if (response.ok) {
         onLoginSuccess();
+        localStorage.setItem("user", JSON.stringify(data));
         navigate('/home');
       } 
       else {

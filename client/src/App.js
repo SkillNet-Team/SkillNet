@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'; // Import your main CSS file for styling
 import Navbar from './Navbar/Navbar';
-import Join from './Pages/JoinUs/Join'; 
+import Join from './Pages/JoinUs/Join';
 import Home from './Pages/HomePage/Home';
 import PersonalProfile from './Pages/Profile/PersonalProfile';
 import SignUp from './Pages/Signin/SignUp';
@@ -11,22 +11,7 @@ import SwapRequests from './Pages/Requests/Requests';
 import Inbox from './Pages/Messages/Inbox';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    // Initialize isLoggedIn state based on local storage
-    return localStorage.getItem('isLoggedIn') === 'true';
-  }); 
-  const [backendData, setBackendData] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/users")
-      .then(response => response.json())
-      .then(data => {
-        setBackendData(data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Function to handle login
   const handleLogin = () => {
@@ -38,6 +23,7 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.setItem('isLoggedIn', 'false'); // Store login status in local storage
+    localStorage.removeItem("user");
   };
 
   return (
@@ -45,28 +31,16 @@ function App() {
       <div>
         {/* Conditional rendering of Navbar based on login status */}
         <Navbar isLoggedIn={isLoggedIn} handleLogin={handleLogin} handleLogout={handleLogout} />
-        
+
         <div className="container mt-4">
           <Routes>
-            <Route path="/" element={ // Adjusted the Route component
-              <div>
-                <h1>Welcome to SkillNet</h1>
-                {backendData.length === 0 ? (
-                  <p>Start building SkillNet</p>
-                ) : (
-                  backendData.map((user, i) => (
-                    <p className="user-display" key={i}>{user.firstName} {user.lastName} | {user.email}</p>
-                  ))
-                )}
-              </div>
-            } />
-            <Route path="/join" element={<Join />} /> 
+            <Route path="/" element={<Join />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} /> 
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
             <Route path="/personalprofile" element={<PersonalProfile isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
-            <Route path="/swaprequests" element={<SwapRequests />} /> 
-            <Route path="/messages" element={<Inbox />} /> 
+            <Route path="/swaprequests" element={<SwapRequests />} />
+            <Route path="/messages" element={<Inbox />} />
           </Routes>
         </div>
       </div>

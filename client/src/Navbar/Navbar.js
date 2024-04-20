@@ -3,7 +3,7 @@ import './Navbar.css';
 import logo from '../Images/logo.png';
 import { Link } from 'react-router-dom'; // Import Link component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'; 
+import { faUser, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = ({ isLoggedIn, handleLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -51,7 +51,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/join"> {/* Use Link component for navigation */}
+        <Link to="/"> {/* Use Link component for navigation */}
           <img src={logo} alt="Logo" />
         </Link>
       </div>
