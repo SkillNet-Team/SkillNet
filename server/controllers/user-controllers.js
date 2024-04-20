@@ -68,23 +68,21 @@ async function signupUser(req, res) {
 async function patchUser(req, res) {
     try {
         const { id } = req.params;
-        const updates = req.body;
-        console.log(updates);
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: "No such user!" });
 
-        const ops = Object.keys(updates).map((key) => {
-            if (Array.isArray(updates[key])) {
-                return { $push: { [key]: { $each: updates[key] } } };
+        let user = null;
+        const updates = req.body;
+        const arrays = ["skills", "interests", "galleryImages", "requests"];
+        console.log(updates);
+
+        for (let property in updates) {
+            if (arrays.includes(property)) {
+                user = await User.findByIdAndUpdate({ _id: id }, { $push: { [property]: updates[property] } });
             } else {
-                return { $set: { [key]: updates[key] } };
+                user = await User.findByIdAndUpdate({ _id: id }, { $set: { [property]: updates[property] } });
             }
-        });
+        }
 
-        console.log(ops);
-
-        // const user = await User.findByIdAndUpdate({ _id: id }, { ...req.body });
-        // if (!user) res.status(404).json({ error: "No such user!" });
-        // else 
         res.status(200).json({ message: "Success!" });
     } catch (error) {
         console.log(error);

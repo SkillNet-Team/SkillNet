@@ -11,7 +11,7 @@ import SwapRequests from './Pages/Requests/Requests';
 import Inbox from './Pages/Messages/Inbox';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("user") != null);
 
   // Function to handle login
   const handleLogin = () => {
@@ -35,7 +35,7 @@ function App() {
         <div className="container mt-4">
           <Routes>
             <Route path="/" element={<Join />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home isLoggedIn={isLoggedIn} />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
             <Route path="/personalprofile" element={<PersonalProfile isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}

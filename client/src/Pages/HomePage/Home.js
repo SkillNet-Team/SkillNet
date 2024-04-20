@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Home.css'; // Import the CSS file for styling
 import defaultImg from "../../Images/default.png";
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
   const [backendData, setBackendData] = useState([]);
 
   useEffect(() => {
-    fetch("/api/users")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -18,6 +18,7 @@ const Home = () => {
   }, []);
 
   const sendRequest = async (id) => {
+    console.log(id);
     const user = localStorage.getItem("user");
 
     if (!user) return;
@@ -25,8 +26,11 @@ const Home = () => {
     const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ requests: [JSON.parse(user).id], name: "ahaha" })
+      body: JSON.stringify({ requests: JSON.parse(user).id })
     });
+
+    if (res.ok) alert("Successfully sent swap request!");
+    else alert("There was an error sending your swap request.");
   }
 
   // Helper function to generate star icons based on rating
@@ -50,12 +54,19 @@ const Home = () => {
       ) : (
         <div className="card-container">
           {backendData.map((user) => (
-            <div className="card">
+            <div className="card" key={user._id}>
               <img src={(user.profilePicture === "") ? defaultImg : user.profilePicture} alt="pfp" className="card-image" />
               <div className="card-details">
                 <h3 className="card-name">{user.firstName} {user.lastName}</h3>
                 <p className="card-profession">{(user.occupation === "") ? "No occupation" : user.occupation}</p>
-                <button className="swap-button" onClick={() => sendRequest(user.id)}>Swap</button> {/* Green swap button */}
+                <button
+                  className="swap-button"
+                  onClick={() => sendRequest(user._id)}
+                  disabled={!isLoggedIn}
+                >
+                  Swap
+                </button>
+                <p className="warning">Please sign in to use this functionality.</p>
               </div>
             </div>
           ))}
