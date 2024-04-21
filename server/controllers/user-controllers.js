@@ -72,12 +72,18 @@ async function patchUser(req, res) {
 
         let user = null;
         const updates = req.body;
-        const arrays = ["skills", "interests", "galleryImages", "requests"];
+        const arrays = ["skills", "interests", "galleryImages", "requests", "matches"];
         console.log(updates);
 
         for (let property in updates) {
             if (arrays.includes(property)) {
-                user = await User.findByIdAndUpdate({ _id: id }, { $push: { [property]: updates[property] } });
+                if (property === "requests" && updates.requests[0] === "PULL") {
+                    user = await User.findByIdAndUpdate({ _id: id }, { $pull: { requests: updates.requests[1] } });
+                } else if (property === "requests" && updates.requests[0] === "PUSH") {
+                    user = await User.findByIdAndUpdate({ _id: id }, { $push: { requests: updates.requests[1] } });
+                } else {
+                    user = await User.findByIdAndUpdate({ _id: id }, { $push: { [property]: updates[property] } });
+                }
             } else {
                 user = await User.findByIdAndUpdate({ _id: id }, { $set: { [property]: updates[property] } });
             }

@@ -6,15 +6,18 @@ const Home = ({ isLoggedIn }) => {
   const [backendData, setBackendData] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/users`)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setBackendData(data);
-      })
-      .catch(error => {
-        console.error("Error fetching data.");
-      });
+    async function fetchUsers() {
+      const user = localStorage.getItem("user");
+
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`);
+      const data = await response.json();
+
+      if (response.ok) {
+        setBackendData(data.filter((u) => (u._id !== JSON.parse(user).id)));
+      }
+    }
+
+    fetchUsers();
   }, []);
 
   const sendRequest = async (id) => {
@@ -26,7 +29,7 @@ const Home = ({ isLoggedIn }) => {
     const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ requests: JSON.parse(user).id })
+      body: JSON.stringify({ requests: ["PUSH", JSON.parse(user).id] })
     });
 
     if (res.ok) alert("Successfully sent swap request!");

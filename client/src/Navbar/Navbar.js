@@ -57,7 +57,9 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
       </div>
       <ul className="navbar-menu">
         <li><Link to="/home">Home</Link></li>
-        <li><Link to="/swaprequests">Swap Requests</Link></li>
+        {(isLoggedIn) && (
+          <li><Link to="/swaprequests">Swap Requests</Link></li>
+        )}
         <li><a href="/aboutus" data-testid="about-us-link">About Us</a></li>
         <li><Link to="/resources">Resources</Link></li>
         <li><Link to="/community">Community</Link></li>

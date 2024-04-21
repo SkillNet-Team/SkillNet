@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
     interests: { type: [String], required: false, unique: false },
     galleryImages: { type: [String], required: false, unique: false },
     profilePicture: { type: String, required: false, unique: false, default: "" },
-    requests: { type: [String], required: false, unique: false }
+    requests: { type: [String], required: false, unique: false },
+    matches: { type: [String], required: false, unique: false }
 });
 
 userSchema.pre('save', async function (next) {

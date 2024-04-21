@@ -24,6 +24,7 @@ function App() {
     setIsLoggedIn(false);
     localStorage.setItem('isLoggedIn', 'false'); // Store login status in local storage
     localStorage.removeItem("user");
+    window.location.href = "/login";
   };
 
   return (
