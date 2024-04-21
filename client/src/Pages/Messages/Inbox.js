@@ -5,7 +5,7 @@ const Inbox = () => {
   // Example array of messages (replace with actual data fetched from API)
   const [messages, setMessages] = useState([
     { id: 1, sender: 'John', content: 'Hi, let\'s discuss the agenda for tomorrow\'s meeting.' },
-    { id: 2, sender: 'Alice',content: 'Here\'s the latest update on our project progress.' },
+    { id: 2, sender: 'Alice', content: 'Here\'s the latest update on our project progress.' },
     // Add more messages as needed
   ]);
 
@@ -38,3 +38,5 @@ const Inbox = () => {
 };
 
 export default Inbox;
+
+// TODO: Implement (@Talike)

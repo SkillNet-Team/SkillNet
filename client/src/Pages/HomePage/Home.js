@@ -3,17 +3,19 @@ import './Home.css'; // Import the CSS file for styling
 import defaultImg from "../../Images/default.png";
 
 const Home = ({ isLoggedIn }) => {
-  const [backendData, setBackendData] = useState([]);
+  const [backendData, setBackendData] = useState([]); // State for storing users fetched from back-end
 
   useEffect(() => {
     async function fetchUsers() {
-      const user = localStorage.getItem("user");
+      const user = localStorage.getItem("user"); // Grab current user's info from browser
 
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`);
       const data = await response.json();
 
       if (response.ok) {
-        setBackendData(data.filter((u) => (u._id !== JSON.parse(user).id)));
+        // Filter out user that is currently logged in (if necessary)
+        if (!user) setBackendData(data);
+        else setBackendData(data.filter((u) => (u._id !== JSON.parse(user).id)));
       }
     }
 
@@ -21,10 +23,7 @@ const Home = ({ isLoggedIn }) => {
   }, []);
 
   const sendRequest = async (id) => {
-    console.log(id);
     const user = localStorage.getItem("user");
-
-    if (!user) return;
 
     const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
       method: "PATCH",

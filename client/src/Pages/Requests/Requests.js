@@ -3,18 +3,17 @@ import './Requests.css'; // Import the CSS file for styling
 import defaultImg from "../../Images/default.png";
 
 const SwapRequests = ({ isDarkMode }) => {
-  const [requests, setRequests] = useState([]);
+  const [requests, setRequests] = useState([]); // State for storing requests fetched from back-end
 
   useEffect(() => {
     async function fetchUsers() {
-      const user = localStorage.getItem("user");
-      const temp = JSON.parse(user).requests;
-      // console.log(temp);
+      const user = localStorage.getItem("user"); // Grab current user's info from browser
+      const temp = JSON.parse(user).requests; // Parse the list of requests
 
+      // Convert each request (id) to its corresponding user
       for (let i = 0; i < temp.length; i++) {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${temp[i]}`);
         const data = await response.json();
-        // console.log(data);
         if (response.ok) temp[i] = data;
       }
 
@@ -38,13 +37,13 @@ const SwapRequests = ({ isDarkMode }) => {
   // };
 
   async function handleAccept(id) {
-    console.log(id);
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem("user"); // Grab current user's info from browser
     let userData = null;
 
     if (!user) return;
-    else userData = JSON.parse(user);
+    else userData = JSON.parse(user); // Parse user object
 
+    // Move other user's ID from user's requests to matches
     const response1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userData.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -54,6 +53,7 @@ const SwapRequests = ({ isDarkMode }) => {
       })
     });
 
+    // Move user's ID to other user's matches
     const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -65,20 +65,20 @@ const SwapRequests = ({ isDarkMode }) => {
     if (response1.ok && response2.ok) {
       alert("Swap request accepted!");
       userData.requests.splice(userData.requests.indexOf(id));
-      localStorage.setItem("user", JSON.stringify(userData));
-      window.location.reload();
+      localStorage.setItem("user", JSON.stringify(userData)); // Update current user's data in browser
+      window.location.reload(); // Refresh page to show new data
     }
     else alert("There was an error accepting the swap request.");
   }
 
   async function handleDelete(id) {
-    console.log(id);
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem("user"); // Grab current user's info from browser
     let userData = null;
 
     if (!user) return;
-    else userData = JSON.parse(user);
+    else userData = JSON.parse(user); // Parse user object
 
+    // Remove other user's ID from current user's requests
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userData.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -90,8 +90,8 @@ const SwapRequests = ({ isDarkMode }) => {
     if (response.ok) {
       alert("Swap request deleted!");
       userData.requests.splice(userData.requests.indexOf(id));
-      localStorage.setItem("user", JSON.stringify(userData));
-      window.location.reload();
+      localStorage.setItem("user", JSON.stringify(userData)); // Update current user's data in browser
+      window.location.reload(); // Refresh page to show new data
     }
     else alert("There was an error deleting the swap request.");
   }

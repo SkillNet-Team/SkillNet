@@ -40,7 +40,8 @@ async function loginUser(req, res) {
             interests: user.interests,
             galleryImages: user.galleryImages,
             profilePicture: user.profilePicture,
-            requests: user.requests
+            requests: user.requests,
+            matches: user.matches
         });
     } else {
         res.status(400).json({ message: "Incorrect email or password." });
@@ -72,19 +73,18 @@ async function patchUser(req, res) {
 
         let user = null;
         const updates = req.body;
-        const arrays = ["skills", "interests", "galleryImages", "requests", "matches"];
-        console.log(updates);
+        const arrays = ["skills", "interests", "galleryImages", "requests", "matches"]; // Names of array properties in user model
 
         for (let property in updates) {
-            if (arrays.includes(property)) {
-                if (property === "requests" && updates.requests[0] === "PULL") {
+            if (arrays.includes(property)) { // Handle array properties
+                if (property === "requests" && updates.requests[0] === "PULL") { // Remove request
                     user = await User.findByIdAndUpdate({ _id: id }, { $pull: { requests: updates.requests[1] } });
-                } else if (property === "requests" && updates.requests[0] === "PUSH") {
+                } else if (property === "requests" && updates.requests[0] === "PUSH") { // Add request
                     user = await User.findByIdAndUpdate({ _id: id }, { $push: { requests: updates.requests[1] } });
-                } else {
+                } else { // All other array properties (for now)
                     user = await User.findByIdAndUpdate({ _id: id }, { $push: { [property]: updates[property] } });
                 }
-            } else {
+            } else { // Handle basic properties
                 user = await User.findByIdAndUpdate({ _id: id }, { $set: { [property]: updates[property] } });
             }
         }

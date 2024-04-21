@@ -23,8 +23,8 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.setItem('isLoggedIn', 'false'); // Store login status in local storage
-    localStorage.removeItem("user");
-    window.location.href = "/login";
+    localStorage.removeItem("user"); // Remove user data from browser
+    window.location.href = "/login"; // Redirect to login page
   };
 
   return (
