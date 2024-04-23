@@ -8,7 +8,8 @@ export default function PersonalProfile({ isDarkMode }) {
   const [isSendingMessage, setIsSendingMessage] = useState(false); // State for sending message
   const [message, setMessage] = useState(''); // State to store the message
   const [profileData, setProfileData] = useState({
-    name: 'Marie Horwitz',
+    firstName: 'Marie',
+    lastName: 'Horwitz',
     occupation: 'Web Designer',
     location: 'New York, USA',
     email: 'info@example.com',
@@ -114,11 +115,18 @@ export default function PersonalProfile({ isDarkMode }) {
           <div className="profile-details">
             {isEditMode ? (
               <form onSubmit={handleSubmit}>
-                <input type="text" name="name" value={profileData.name} onChange={handleChange}/>
-                <input type="text" name="occupation" value={profileData.occupation} onChange={handleChange} />
-                <input type="text" name="location" value={profileData.location} onChange={handleChange} />
-                <input type="text" name="email" value={profileData.email} onChange={handleChange} />
-                <input type="text" name="phone" value={profileData.phone} onChange={handleChange} />
+                <label htmlFor="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" value={profileData.firstName} onChange={handleChange} />
+                <label htmlFor="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange} />
+                <label htmlFor="occupation">Occupation</label>
+                <input type="text" id="occupation" name="occupation" value={profileData.occupation} onChange={handleChange} />
+                <label htmlFor="location">Location</label>
+                <input type="text" id="location" name="location" value={profileData.location} onChange={handleChange} />
+                <label htmlFor="email">Email</label>
+                <input type="text" id="email" name="email" value={profileData.email} onChange={handleChange} />
+                <label htmlFor="phone">Phone</label>
+                <input type="text" id="phone" name="phone" value={profileData.phone} onChange={handleChange} />
                 <h3>Skills</h3>
                 {profileData.skills.map((skill, index) => (
                   <input
@@ -151,7 +159,7 @@ export default function PersonalProfile({ isDarkMode }) {
               </form>
             ) : (
               <>
-                <h2 className="profile-name" data-testid="user-name" >{profileData.name}</h2>
+                <h2 className="profile-name">{profileData.firstName} {profileData.lastName}</h2>
                 <p className="profile-occupation">{profileData.occupation}</p>
                 {/* Display other non-editable profile details */}
                 <p><strong>Location:</strong> {profileData.location}</p>
