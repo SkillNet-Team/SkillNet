@@ -12,7 +12,7 @@ export default function PersonalProfile({ isDarkMode }) {
     lastName: 'Horwitz',
     occupation: 'Web Designer',
     location: 'New York, USA',
-    email: 'codereview@123.com',
+    email: 'info@example.com',
     phone: '123 456 789',
     skills: ['Web Design', 'Graphic Design', 'Frontend Development'],
     interests: ['Coding', 'Reading', 'Hiking'],
