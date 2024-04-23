@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import './PersonalProfile.css'; // Importing CSS file
@@ -8,10 +8,11 @@ export default function PersonalProfile({ isDarkMode }) {
   const [isSendingMessage, setIsSendingMessage] = useState(false); // State for sending message
   const [message, setMessage] = useState(''); // State to store the message
   const [profileData, setProfileData] = useState({
-    name: 'Marie Horwitz',
+    firstName: 'Marie',
+    lastName: 'Horwitz',
     occupation: 'Web Designer',
     location: 'New York, USA',
-    email: 'info@example.com',
+    email: 'codereview@123.com',
     phone: '123 456 789',
     skills: ['Web Design', 'Graphic Design', 'Frontend Development'],
     interests: ['Coding', 'Reading', 'Hiking'],
@@ -23,6 +24,26 @@ export default function PersonalProfile({ isDarkMode }) {
     profilePicture: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp',
     tempProfileData: null // To store changes during edit mode
   });
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const userEmail = JSON.parse(localStorage.getItem('user')).email;
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userEmail}`);
+        const data = await response.json();
+        if (response.ok) {
+          setProfileData(data);
+        } else {
+          // handle errors, e.g., user not found
+          console.error('Failed to fetch profile data:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const handleEdit = () => {
     if (isEditMode) {
@@ -77,6 +98,33 @@ export default function PersonalProfile({ isDarkMode }) {
     if (isEditMode) {
       // Only save changes if in edit mode and explicitly clicked the "Save" button
       setIsEditMode(false);
+
+      // Define the user update URL
+      const updateUrl = `/api/users/${profileData.email}`; // Assuming email is used as unique identifier
+
+      // Set up the fetch request options
+      const requestOptions = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${profileData.firstName} ${profileData.lastName}`,
+          skills: profileData.skills,
+          interests: profileData.interests,
+          galleryImages: profileData.galleryImages,
+          profilePicture: profileData.profilePicture,
+        }),
+      };
+
+      // Make the fetch request to the server
+      fetch(updateUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          alert('Profile updated successfully');
+        })
+        .catch(error => {
+          console.error('Error updating profile:', error);
+        });
+
     }
   };
 
@@ -114,11 +162,18 @@ export default function PersonalProfile({ isDarkMode }) {
           <div className="profile-details">
             {isEditMode ? (
               <form onSubmit={handleSubmit}>
-                <input type="text" name="name" value={profileData.name} onChange={handleChange} />
-                <input type="text" name="occupation" value={profileData.occupation} onChange={handleChange} />
-                <input type="text" name="location" value={profileData.location} onChange={handleChange} />
-                <input type="text" name="email" value={profileData.email} onChange={handleChange} />
-                <input type="text" name="phone" value={profileData.phone} onChange={handleChange} />
+                <label htmlFor="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" value={profileData.firstName} onChange={handleChange} />
+                <label htmlFor="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange} />
+                <label htmlFor="occupation">Occupation</label>
+                <input type="text" id="occupation" name="occupation" value={profileData.occupation} onChange={handleChange} />
+                <label htmlFor="location">Location</label>
+                <input type="text" id="location" name="location" value={profileData.location} onChange={handleChange} />
+                <label htmlFor="email">Email</label>
+                <input type="text" id="email" name="email" value={profileData.email} readOnly />
+                <label htmlFor="phone">Phone</label>
+                <input type="text" id="phone" name="phone" value={profileData.phone} onChange={handleChange} />
                 <h3>Skills</h3>
                 {profileData.skills.map((skill, index) => (
                   <input
@@ -151,7 +206,7 @@ export default function PersonalProfile({ isDarkMode }) {
               </form>
             ) : (
               <>
-                <h2 className="profile-name">{profileData.name}</h2>
+                <h2 className="profile-name">{profileData.firstName} {profileData.lastName}</h2>
                 <p className="profile-occupation">{profileData.occupation}</p>
                 {/* Display other non-editable profile details */}
                 <p><strong>Location:</strong> {profileData.location}</p>

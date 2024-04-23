@@ -12,12 +12,17 @@ async function getUsers(req, res) {
 
 // GET /api/users/:id
 async function getUser(req, res) {
-    const {id} = req.params;
-
-    const user = await User.findById(id);
-
-    if(!user) res.status(404).json({ message: "No such user!" });
-    else res.status(200).json(user);
+    const { email } = req.params;
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        res.status(404).json({ message: 'User not found' });
+      } else {
+        res.status(200).json(user);
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error });
+    }
 }
 
 // POST /api/users/login
@@ -27,7 +32,18 @@ async function loginUser(req, res) {
     if (!user) return res.status(400).json({message: "Incorrect email or password."});
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
-        res.status(200).json({email, firstName: user.firstName, lastName: user.lastName});
+        res.status(200).json({
+            email: user.email, 
+            firstName: user.firstName, 
+            lastName: user.lastName,
+            occupation: user.occupation,
+            location: user.location,
+            phone: user.phone,
+            skills: user.skills,
+            interests: user.interests,
+            galleryImages: user.galleryImages,
+            profilePicture: user.profilePicture
+        });
     } else {
         res.status(400).json({message: "Incorrect email or password."});
     }
@@ -51,8 +67,28 @@ async function signupUser(req, res) {
 }
 
 // PATCH /api/users/:id
-function patchUser(req, res) {
-
+async function patchUser(req, res) {
+    const {email} = req.params;
+    console.log(email);
+    
+    try {
+        const data = req.body;
+        console.log(data);
+        console.log(data.name);
+        const user = await User.findOneAndUpdate({email}, 
+            {
+            firstName: data.name.split(" ")[0], 
+            lastName: data.name.split(" ")[1],
+            skills: data.skills,
+            interests: data.interests,
+            galleryImages: data.galleryImages,
+            profilePicture: data.profilePicture
+            });
+        res.status(200).json({message: "User successfully updated."});
+    }
+    catch (error) {
+        res.status(500).send(error);
+    }
 }
 
 // DELETE /api/users/:id

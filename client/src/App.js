@@ -38,7 +38,12 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.setItem('isLoggedIn', 'false'); // Store login status in local storage
+    localStorage.removeItem("user");
   };
+
+  const getUser = () => {
+    return localStorage.getItem("user");
+  }
 
   return (
     <Router>
@@ -64,7 +69,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/signup" element={<SignUp />} /> 
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
-            <Route path="/personalprofile" element={<PersonalProfile isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
+            <Route path="/personalprofile" element={<PersonalProfile user={`${localStorage.getItem("user")}`} isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
             <Route path="/swaprequests" element={<SwapRequests />} /> 
             <Route path="/messages" element={<Inbox />} /> 
           </Routes>
