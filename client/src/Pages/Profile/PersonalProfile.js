@@ -99,15 +99,19 @@ export default function PersonalProfile({ isDarkMode }) {
       // Only save changes if in edit mode and explicitly clicked the "Save" button
       setIsEditMode(false);
 
+      const user = JSON.parse(localStorage.getItem('user'));
+
       // Define the user update URL
-      const updateUrl = `/api/users/${profileData.email}`; // Assuming email is used as unique identifier
+      const updateUrl = `${process.env.REACT_APP_BACKEND_URL}/users/${profileData._id}`;
 
       // Set up the fetch request options
       const requestOptions = {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: `${profileData.firstName} ${profileData.lastName}`,
+          email: profileData.email,
+          firstName: profileData.firstName,
+          lastName: profileData.lastName,
           skills: profileData.skills,
           interests: profileData.interests,
           galleryImages: profileData.galleryImages,
@@ -171,7 +175,7 @@ export default function PersonalProfile({ isDarkMode }) {
                 <label htmlFor="location">Location</label>
                 <input type="text" id="location" name="location" value={profileData.location} onChange={handleChange} />
                 <label htmlFor="email">Email</label>
-                <input type="text" id="email" name="email" value={profileData.email} readOnly />
+                <input type="text" id="email" name="email" value={profileData.email} onChange={handleChange} />
                 <label htmlFor="phone">Phone</label>
                 <input type="text" id="phone" name="phone" value={profileData.phone} onChange={handleChange} />
                 <h3>Skills</h3>

@@ -32,12 +32,13 @@ const Login = ({ onLoginSuccess }) => {
       });
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if (response.ok) {
         onLoginSuccess();
         navigate('/home');
         localStorage.setItem('user', JSON.stringify(data));
+        console.log(data);
       } 
       else {
         setError(data.message);

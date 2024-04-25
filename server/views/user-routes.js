@@ -6,7 +6,7 @@ router.get("/", getUsers);
 router.get("/:email", getUser);
 router.post("/login", loginUser);
 router.post("/signup", signupUser);
-router.patch("/:email", patchUser);
+router.patch("/:id", patchUser);
 router.delete("/:id", deleteUser);
 
 module.exports = router;

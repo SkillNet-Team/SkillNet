@@ -33,6 +33,7 @@ async function loginUser(req, res) {
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
         res.status(200).json({
+            _id: user._id,
             email: user.email, 
             firstName: user.firstName, 
             lastName: user.lastName,
@@ -68,26 +69,32 @@ async function signupUser(req, res) {
 
 // PATCH /api/users/:id
 async function patchUser(req, res) {
-    const {email} = req.params;
-    console.log(email);
-    
     try {
-        const data = req.body;
-        console.log(data);
-        console.log(data.name);
-        const user = await User.findOneAndUpdate({email}, 
-            {
-            firstName: data.name.split(" ")[0], 
-            lastName: data.name.split(" ")[1],
-            skills: data.skills,
-            interests: data.interests,
-            galleryImages: data.galleryImages,
-            profilePicture: data.profilePicture
-            });
-        res.status(200).json({message: "User successfully updated."});
-    }
-    catch (error) {
-        res.status(500).send(error);
+        const { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: "No such user!" });
+
+        let user = null;
+        const updates = req.body;
+        const arrays = ["skills", "interests", "galleryImages", "requests", "matches"]; // Names of array properties in user model
+
+        for (let property in updates) {
+            if (arrays.includes(property)) { // Handle array properties
+                if (property === "requests" && updates.requests[0] === "PULL") { // Remove request
+                    user = await User.findByIdAndUpdate({ _id: id }, { $pull: { requests: updates.requests[1] } });
+                } else if (property === "requests" && updates.requests[0] === "PUSH") { // Add request
+                    user = await User.findByIdAndUpdate({ _id: id }, { $push: { requests: updates.requests[1] } });
+                } else { // All other array properties (for now)
+                    user = await User.findByIdAndUpdate({ _id: id }, { $set: { [property]: updates[property] } });
+                }
+            } else { // Handle basic properties
+                user = await User.findByIdAndUpdate({ _id: id }, { $set: { [property]: updates[property] } });
+            }
+        }
+
+        res.status(200).json({ message: "Success!" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "There was an error updating the user!" });
     }
 }
 
