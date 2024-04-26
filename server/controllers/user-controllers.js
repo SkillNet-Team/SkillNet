@@ -12,17 +12,14 @@ async function getUsers(req, res) {
 
 // GET /api/users/:id
 async function getUser(req, res) {
-    const { email } = req.params;
-    try {
-      const user = await User.findOne({ email });
-      if (!user) {
-        res.status(404).json({ message: 'User not found' });
-      } else {
-        res.status(200).json(user);
-      }
-    } catch (error) {
-      res.status(500).json({ message: 'Server error', error });
-    }
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: "No such user!" });
+
+    const user = await User.findById(id);
+
+    if (!user) res.status(404).json({ message: "No such user!" });
+    else res.status(200).json(user);
 }
 
 // POST /api/users/login
@@ -33,7 +30,7 @@ async function loginUser(req, res) {
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
         res.status(200).json({
-            _id: user._id,
+            id: user._id,
             email: user.email, 
             firstName: user.firstName, 
             lastName: user.lastName,

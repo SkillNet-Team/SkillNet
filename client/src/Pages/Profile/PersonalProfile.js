@@ -27,9 +27,9 @@ export default function PersonalProfile({ isDarkMode }) {
 
   useEffect(() => {
     const fetchProfileData = async () => {
-      const userEmail = JSON.parse(localStorage.getItem('user')).email;
+      const userId = JSON.parse(localStorage.getItem('user')).id;
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userEmail}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
         const data = await response.json();
         if (response.ok) {
           setProfileData(data);
@@ -102,7 +102,7 @@ export default function PersonalProfile({ isDarkMode }) {
       const user = JSON.parse(localStorage.getItem('user'));
 
       // Define the user update URL
-      const updateUrl = `${process.env.REACT_APP_BACKEND_URL}/users/${profileData._id}`;
+      const updateUrl = `${process.env.REACT_APP_BACKEND_URL}/users/${profileData.id}`;
 
       // Set up the fetch request options
       const requestOptions = {
