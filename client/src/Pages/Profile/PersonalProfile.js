@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import './PersonalProfile.css'; // Importing CSS file
@@ -24,6 +24,26 @@ export default function PersonalProfile({ isDarkMode }) {
     profilePicture: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp',
     tempProfileData: null // To store changes during edit mode
   });
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const userId = JSON.parse(localStorage.getItem('user')).id;
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
+        const data = await response.json();
+        if (response.ok) {
+          setProfileData(data);
+        } else {
+          // handle errors, e.g., user not found
+          console.error('Failed to fetch profile data:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const handleEdit = () => {
     if (isEditMode) {
@@ -78,6 +98,37 @@ export default function PersonalProfile({ isDarkMode }) {
     if (isEditMode) {
       // Only save changes if in edit mode and explicitly clicked the "Save" button
       setIsEditMode(false);
+
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      // Define the user update URL
+      const updateUrl = `${process.env.REACT_APP_BACKEND_URL}/users/${profileData.id}`;
+
+      // Set up the fetch request options
+      const requestOptions = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: profileData.email,
+          firstName: profileData.firstName,
+          lastName: profileData.lastName,
+          skills: profileData.skills,
+          interests: profileData.interests,
+          galleryImages: profileData.galleryImages,
+          profilePicture: profileData.profilePicture,
+        }),
+      };
+
+      // Make the fetch request to the server
+      fetch(updateUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          alert('Profile updated successfully');
+        })
+        .catch(error => {
+          console.error('Error updating profile:', error);
+        });
+
     }
   };
 

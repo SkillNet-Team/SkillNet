@@ -27,6 +27,10 @@ function App() {
     window.location.href = "/login"; // Redirect to login page
   };
 
+  const getUser = () => {
+    return localStorage.getItem("user");
+  }
+
   return (
     <Router>
       <div>
@@ -39,9 +43,9 @@ function App() {
             <Route path="/home" element={<Home isLoggedIn={isLoggedIn} />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
-            <Route path="/personalprofile" element={<PersonalProfile isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
-            <Route path="/swaprequests" element={<SwapRequests />} />
-            <Route path="/messages" element={<Inbox />} />
+            <Route path="/personalprofile" element={<PersonalProfile user={`${localStorage.getItem("user")}`} isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
+            <Route path="/swaprequests" element={<SwapRequests />} /> 
+            <Route path="/messages" element={<Inbox />} /> 
           </Routes>
         </div>
       </div>

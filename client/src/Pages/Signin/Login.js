@@ -25,18 +25,21 @@ const Login = ({ onLoginSuccess }) => {
     // console.log(formData);
 
     try {
-      const response = await fetch('/api/users/login', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       });
 
       const data = await response.json();
+      // console.log(data);
 
       if (response.ok) {
         onLoginSuccess();
         localStorage.setItem("user", JSON.stringify(data));
         navigate('/home');
+        localStorage.setItem('user', JSON.stringify(data));
+        console.log(data);
       } 
       else {
         setError(data.message);

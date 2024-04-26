@@ -30,8 +30,8 @@ async function loginUser(req, res) {
     if (isMatch) {
         res.status(200).json({
             id: user._id,
-            email: user.email,
-            firstName: user.firstName,
+            email: user.email, 
+            firstName: user.firstName, 
             lastName: user.lastName,
             occupation: user.occupation,
             location: user.location,
@@ -82,7 +82,7 @@ async function patchUser(req, res) {
                 } else if (property === "requests" && updates.requests[0] === "PUSH") { // Add request
                     user = await User.findByIdAndUpdate({ _id: id }, { $push: { requests: updates.requests[1] } });
                 } else { // All other array properties (for now)
-                    user = await User.findByIdAndUpdate({ _id: id }, { $push: { [property]: updates[property] } });
+                    user = await User.findByIdAndUpdate({ _id: id }, { $set: { [property]: updates[property] } });
                 }
             } else { // Handle basic properties
                 user = await User.findByIdAndUpdate({ _id: id }, { $set: { [property]: updates[property] } });
