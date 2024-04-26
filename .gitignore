@@ -58,3 +58,4 @@ terraform.rc
 
 node_modules
 .env
+coverage

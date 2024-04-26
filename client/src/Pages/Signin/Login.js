@@ -22,7 +22,7 @@ const Login = ({ onLoginSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
 
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
@@ -32,10 +32,14 @@ const Login = ({ onLoginSuccess }) => {
       });
 
       const data = await response.json();
+      // console.log(data);
 
       if (response.ok) {
         onLoginSuccess();
+        localStorage.setItem("user", JSON.stringify(data));
         navigate('/home');
+        localStorage.setItem('user', JSON.stringify(data));
+        console.log(data);
       } 
       else {
         setError(data.message);
