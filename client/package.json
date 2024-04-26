@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --watchAll=false --detectOpenHandles --forceExit",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

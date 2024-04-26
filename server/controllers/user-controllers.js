@@ -2,12 +2,11 @@ const User = require("../models/user-model");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// GET /api/users/
+// GET /api/users
 async function getUsers(req, res) {
-    const users = await User.find({}).sort({createdAt: -1});
+    const users = await User.find({}).sort({ createdAt: -1 });
 
-    if(users.length == 0) res.status(404).json({ message: "There are no users!" });
-    else res.status(200).json(users);
+    res.status(200).json(users);
 }
 
 // GET /api/users/:id
@@ -24,9 +23,9 @@ async function getUser(req, res) {
 
 // POST /api/users/login
 async function loginUser(req, res) {
-    const {email, password} = req.body;
-    const user = await User.findOne({email});
-    if (!user) return res.status(400).json({message: "Incorrect email or password."});
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: "Incorrect email or password." });
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
         res.status(200).json({
@@ -40,23 +39,25 @@ async function loginUser(req, res) {
             skills: user.skills,
             interests: user.interests,
             galleryImages: user.galleryImages,
-            profilePicture: user.profilePicture
+            profilePicture: user.profilePicture,
+            requests: user.requests,
+            matches: user.matches
         });
     } else {
-        res.status(400).json({message: "Incorrect email or password."});
+        res.status(400).json({ message: "Incorrect email or password." });
     }
 }
 
 // POST /api/users/signup
 async function signupUser(req, res) {
     try {
-        const {email, firstName, lastName, password, confirmPassword} = req.body;
-        const user = await User.create({email, firstName, lastName, password});
-        res.status(201).json({email, firstName, lastName});
+        const { email, firstName, lastName, password, confirmPassword } = req.body;
+        const user = await User.create({ email, firstName, lastName, password });
+        res.status(201).json({ email, firstName, lastName });
     } catch (error) {
         console.error(error);
         if (error.code === 11000) {
-            res.status(400).send({message: "This email address already has an account."});
+            res.status(400).send({ message: "This email address already has an account." });
         }
         else {
             res.status(500).send(error);
@@ -97,12 +98,12 @@ async function patchUser(req, res) {
 
 // DELETE /api/users/:id
 async function deleteUser(req, res) {
-    const {id} = req.params;
+    const { id } = req.params;
 
-    const user = await User.findOneAndDelete({_id: id});
+    const user = await User.findOneAndDelete({ _id: id });
 
-    if(!user) res.status(404).json({message: "No such user!"});
-    else res.status(200).json({message: "User successfully deleted!"});
+    if (!user) res.status(404).json({ message: "No such user!" });
+    else res.status(200).json({ message: "User successfully deleted!" });
 }
 
-module.exports = {getUsers, getUser, loginUser, signupUser, patchUser, deleteUser};
+module.exports = { getUsers, getUser, loginUser, signupUser, patchUser, deleteUser };

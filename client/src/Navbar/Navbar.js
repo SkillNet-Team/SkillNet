@@ -3,7 +3,7 @@ import './Navbar.css';
 import logo from '../Images/logo.png';
 import { Link } from 'react-router-dom'; // Import Link component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'; 
+import { faUser, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = ({ isLoggedIn, handleLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -51,19 +51,21 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/join"> {/* Use Link component for navigation */}
+        <Link to="/"> {/* Use Link component for navigation */}
           <img src={logo} alt="Logo" />
         </Link>
       </div>
       <ul className="navbar-menu">
         <li><Link to="/home">Home</Link></li>
-        <li><Link to="/swaprequests">Swap Requests</Link></li>
-        <li><Link to="/aboutus">About Us</Link></li>
+        {(isLoggedIn) && (
+          <li><Link to="/swaprequests">Swap Requests</Link></li>
+        )}
+        <li><a href="/aboutus" data-testid="about-us-link">About Us</a></li>
         <li><Link to="/resources">Resources</Link></li>
         <li><Link to="/community">Community</Link></li>
       </ul>
       <div className="navbar-search">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" data-testid="search-bar" />
         <button>Search</button>
       </div>
       {/* Conditional rendering of profile icon with dropdown */}

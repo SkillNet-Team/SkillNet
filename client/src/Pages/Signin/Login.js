@@ -36,6 +36,7 @@ const Login = ({ onLoginSuccess }) => {
 
       if (response.ok) {
         onLoginSuccess();
+        localStorage.setItem("user", JSON.stringify(data));
         navigate('/home');
         localStorage.setItem('user', JSON.stringify(data));
         console.log(data);
