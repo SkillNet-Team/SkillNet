@@ -1,11 +1,10 @@
-
-- name: Render Deploy Action
+name: Render Deploy Action
 
 on:
   push:
-    branches: [ Myesha-Assignment-10-Deploy ]
+    branches: [Myesha-Assignment-10-Deploy]
   pull_request:
-    branches: [ Myesha-Assignment-10-Deploy ]
+    branches: [Myesha-Assignment-10-Deploy]
 
 jobs:
   build:
