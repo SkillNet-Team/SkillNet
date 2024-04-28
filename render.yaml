@@ -17,7 +17,6 @@ services:
     buildCommand: npm install
     startCommand: npm run start
     autoDeploy: true # Disable automatic deploys
-    maxShutdownDelaySeconds: 120 # Increase graceful shutdown period. Default: 30, Max: 300
 
     envVars: # Environment variables
       - key: MONGODB_URI
