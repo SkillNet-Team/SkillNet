@@ -1,0 +1,19 @@
+
+- name: Render Deploy Action
+
+on:
+  push:
+    branches: [ Myesha-Assignment-10-Deploy ]
+  pull_request:
+    branches: [ Myesha-Assignment-10-Deploy ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: srv-con8aei1hbls73fefeo0
+          api-key: rnd_XiCZ141jj69DZRM3IUDyydyoILFG
+          wait-for-success: true
