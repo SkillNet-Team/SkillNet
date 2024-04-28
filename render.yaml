@@ -33,6 +33,9 @@ services:
     staticPublishPath: ./build
     pullRequestPreviewsEnabled: true # Enable service previews
     rootDir: client
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        value: https://skillnet-app.onrender.com/api
     buildFilter:
       paths:
         - src/*/.js
