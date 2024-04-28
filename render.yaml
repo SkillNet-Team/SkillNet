@@ -1,0 +1,16 @@
+services:
+  - name: skillnet
+    type: web
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start
+    branch: Myesha-Assignment-10-Deploy
+    rootDir: server
+
+envVars:
+  - key: MONGODB_URI
+    value: mongodb+srv://admin:skillnetadmin123@skillnet.6yk66q8.mongodb.net/skillnet-db?retryWrites=true&w=majority&appName=SkillNet
+
+  - key: PORT
+    value: 5000
