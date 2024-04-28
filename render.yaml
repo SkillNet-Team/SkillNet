@@ -24,3 +24,20 @@ services:
         value: mongodb+srv://admin:skillnetadmin123@skillnet.6yk66q8.mongodb.net/skillnet-db?retryWrites=true&w=majority&appName=SkillNet# Hardcoded value
       - key: PORT
         value: 5000
+
+  # A static site
+  - type: web
+    name: skillnet-frontend
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: ./build
+    pullRequestPreviewsEnabled: true # Enable service previews
+    buildFilter:
+      paths:
+        - src/*/.js
+      ignoredPaths:
+        - src/*/.test.js
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin
