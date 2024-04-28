@@ -16,7 +16,7 @@ services:
     branch: Myesha-Assignment-10-Deploy # Default: master
     buildCommand: npm install
     startCommand: npm run start
-    autoDeploy: ftrue # Disable automatic deploys
+    autoDeploy: true # Disable automatic deploys
     maxShutdownDelaySeconds: 120 # Increase graceful shutdown period. Default: 30, Max: 300
 
     envVars: # Environment variables
