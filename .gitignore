@@ -57,3 +57,5 @@ override.tf.json
 terraform.rc
 
 node_modules
+.env
+coverage

@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --testTimeout=10000 --coverage --detectOpenHandles --forceExit",
     "start": "node server",
     "dev": "nodemon server"
   },
@@ -17,9 +17,11 @@
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.2.1"
+    "mongoose": "^8.2.1",
+    "supertest": "^6.3.4"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.0"
   }
 }

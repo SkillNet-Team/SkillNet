@@ -1,62 +1,79 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css'; // Import the CSS file for styling
-import p1Image from '../../Images/p1.jpg';
-import p2Image from '../../Images/p2.jpg';
-import p3Image from '../../Images/p3.jpg';
-// Import the image
+import defaultImg from "../../Images/default.png";
 
-const Home = () => {
-  // Helper function to generate star icons based on rating
-  const generateStars = (rating) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      if (i < rating) {
-        stars.push(<span key={i} className="star-icon">&#9733;</span>); // Full star
-      } else {
-        stars.push(<span key={i} className="star-icon">&#9734;</span>); // Empty star
+const Home = ({ isLoggedIn }) => {
+  const [backendData, setBackendData] = useState([]); // State for storing users fetched from back-end
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const user = localStorage.getItem("user"); // Grab current user's info from browser
+
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`);
+      const data = await response.json();
+
+      if (response.ok) {
+        // Filter out user that is currently logged in (if necessary)
+        if (!user) setBackendData(data);
+        else setBackendData(data.filter((u) => (u._id !== JSON.parse(user).id)));
       }
     }
-    return stars;
-  };
+
+    fetchUsers();
+  }, []);
+
+  const sendRequest = async (id) => {
+    const user = localStorage.getItem("user");
+
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ requests: ["PUSH", JSON.parse(user).id] })
+    });
+
+    if (res.ok) alert("Successfully sent swap request!");
+    else alert("There was an error sending your swap request.");
+  }
+
+  // Helper function to generate star icons based on rating
+  // const generateStars = (rating) => {
+  //   const stars = [];
+  //   for (let i = 0; i < 5; i++) {
+  //     if (i < rating) {
+  //       stars.push(<span key={i} className="star-icon">&#9733;</span>); // Full star
+  //     } else {
+  //       stars.push(<span key={i} className="star-icon">&#9734;</span>); // Empty star
+  //     }
+  //   }
+  //   return stars;
+  // };
 
   return (
     <div className="home-container">
       <h2 className="home-title">Skills that match you!</h2>
-      <div className="card-container">
-        {/* Card 1 */}
-        <div className="card">
-          <img src={p1Image} alt="Person 1" className="card-image" />
-          <div className="card-details">
-            <h3 className="card-name">John Doe</h3>
-            <p className="card-profession">Software Engineer</p>
-            <p className="card-experience">Experience: 5 years</p>
-            <p className="card-rating">Rating: {generateStars(4.5)}</p>
-            <button className="swap-button">Swap</button> {/* Green swap button */}
-          </div>
+      {(backendData.length === 0) ? (
+        <p>No skills for you at the moment. Please check back later.</p>
+      ) : (
+        <div className="card-container">
+          {backendData.map((user) => (
+            <div className="card" key={user._id}>
+              <img src={(user.profilePicture === "") ? defaultImg : user.profilePicture} alt="pfp" className="card-image" />
+              <div className="card-details">
+                <h3 className="card-name">{user.firstName} {user.lastName}</h3>
+                <p className="card-profession">{(user.occupation === "") ? "No occupation" : user.occupation}</p>
+                <button
+                  className="swap-button"
+                  onClick={() => sendRequest(user._id)}
+                  disabled={!isLoggedIn}
+                >
+                  Swap
+                </button>
+                <p className="warning">Please sign in to use this functionality.</p>
+              </div>
+            </div>
+          ))}
         </div>
-        {/* Card 2 */}
-        <div className="card">
-          <img src={p2Image} alt="Person 2" className="card-image" />
-          <div className="card-details">
-            <h3 className="card-name">Jane Smith</h3>
-            <p className="card-profession">Data Scientist</p>
-            <p className="card-experience">Experience: 7 years</p>
-            <p className="card-rating">Rating: {generateStars(4.8)}</p>
-            <button className="swap-button">Swap</button> {/* Green swap button */}
-          </div>
-        </div>
-        {/* Card 3 */}
-        <div className="card">
-          <img src={p3Image} alt="Person 3" className="card-image" />
-          <div className="card-details">
-            <h3 className="card-name">Alex Johnson</h3>
-            <p className="card-profession">Web Developer</p>
-            <p className="card-experience">Experience: 3 years</p>
-            <p className="card-rating">Rating: {generateStars(4.2)}</p>
-            <button className="swap-button">Swap</button> {/* Green swap button */}
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

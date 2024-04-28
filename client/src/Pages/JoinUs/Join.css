@@ -47,17 +47,14 @@
   
   /* Right content styles */
   .join-right {
-  text-align: center; /* Center the content horizontally */
-  flex: 1; /* Take up equal space */
-  padding: 20px;
-}
-
-.join-right img {
-  max-width: 100%; /* Ensure the image doesn't exceed its container */
-  height: auto; /* Maintain aspect ratio */
-  display: inline-block; /* Ensure the image behaves as a block element */
-}
-
-
-
+    text-align: center; /* Center the content horizontally */
+    flex: 1; /* Take up equal space */
+    padding: 20px;
+  }
+  
+  .join-right img {
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    height: auto; /* Maintain aspect ratio */
+    display: inline-block; /* Ensure the image behaves as a block element */
+  }
   

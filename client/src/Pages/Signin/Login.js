@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; // Reusing the same CSS file
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+
+  const [error, setError] = useState(''); // New state to handle errors
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,15 +20,41 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log(formData);
+    // console.log(formData);
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+      // console.log(data);
+
+      if (response.ok) {
+        onLoginSuccess();
+        localStorage.setItem("user", JSON.stringify(data));
+        navigate('/home');
+        localStorage.setItem('user', JSON.stringify(data));
+        console.log(data);
+      } 
+      else {
+        setError(data.message);
+        console.error('Login failed');
+      }
+    } catch (error) {
+      console.error('Request failed:', error);
+      setError("Failed to connect to the server. Please check your connection and try again.");
+    }
   };
 
   return (
     <div className="signup-container">
       <h2>Login</h2>
+      {error && <div class-name="error-message">{error}</div>}
       <form onSubmit={handleSubmit}>
         <input
           type="email"
