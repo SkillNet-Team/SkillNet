@@ -11,7 +11,7 @@ services:
     name: skillnet-app
     repo: https://github.com/SkillNet-Team/SkillNet # Default: Repo containing render.yaml
     numInstances: 1 # Manual scaling configuration. Default: 1
-    region: frankfurt # Default: oregon
+    region: oregon # Default: oregon
     plan: free # Default: starter
     branch: Myesha-Assignment-10-Deploy # Default: master
     buildCommand: npm install
