@@ -32,6 +32,7 @@ services:
     buildCommand: npm run build
     staticPublishPath: ./build
     pullRequestPreviewsEnabled: true # Enable service previews
+    rootDir: client
     buildFilter:
       paths:
         - src/*/.js
