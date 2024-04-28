@@ -1,15 +1,4 @@
 const User = require("../models/user-model");
-<<<<<<< HEAD
-// const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-
-// GET /api/users/
-async function getUsers(req, res) {
-    const users = await User.find({}).sort({createdAt: -1});
-
-    if(users.length == 0) res.status(404).json({ message: "There are no users!" });
-    else res.status(200).json(users);
-=======
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
@@ -18,42 +7,10 @@ async function getUsers(req, res) {
     const users = await User.find({}).sort({ createdAt: -1 });
 
     res.status(200).json(users);
->>>>>>> e707bdb4d9c93350cf2014892f901a062b1100c2
 }
 
 // GET /api/users/:id
 async function getUser(req, res) {
-<<<<<<< HEAD
-    const {id} = req.params;
-
-    const user = await User.findById(id);
-
-    if(!user) res.status(404).json({ message: "No such user!" });
-    else res.status(200).json(user);
-}
-
-// POST /api/users/login
-async function loginUser(req, res) {
-    const {email, password} = req.body;
-    const user = await User.findOne({email});
-    if (!user) return res.status(400).json({message: "User not found"});
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
-        res.status(201).json({email, firstName: user.firstName, lastName: user.lastName});
-    } else {
-        res.status(400).json({message: "Invalid credentials"});
-    }
-}
-
-// OG Function
-/* async function signupUser(req, res) {
-    console.log(req);
-    console.log(req.body);
-    const {email, username, password} = req.body;
-    const user = await User.create({email, username, password});
-    res.status(200).json({email, username});
-} */
-=======
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: "No such user!" });
@@ -90,20 +47,10 @@ async function loginUser(req, res) {
         res.status(400).json({ message: "Incorrect email or password." });
     }
 }
->>>>>>> e707bdb4d9c93350cf2014892f901a062b1100c2
 
 // POST /api/users/signup
 async function signupUser(req, res) {
     try {
-<<<<<<< HEAD
-        const {email, firstName, lastName, password, confirmPassword} = req.body;
-        if(!(password == confirmPassword)) throw new Error("Passwords don't match!");
-        const user = await User.create({email, firstName, lastName, password});
-        res.status(201).json({email, firstName, lastName});
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error creating user" });
-=======
         const { email, firstName, lastName, password, confirmPassword } = req.body;
         const user = await User.create({ email, firstName, lastName, password });
         res.status(201).json({ email, firstName, lastName });
@@ -115,14 +62,10 @@ async function signupUser(req, res) {
         else {
             res.status(500).send(error);
         }
->>>>>>> e707bdb4d9c93350cf2014892f901a062b1100c2
     }
 }
 
 // PATCH /api/users/:id
-<<<<<<< HEAD
-function patchUser(req, res) {
-=======
 async function patchUser(req, res) {
     try {
         const { id } = req.params;
@@ -131,7 +74,6 @@ async function patchUser(req, res) {
         let user = null;
         const updates = req.body;
         const arrays = ["skills", "interests", "galleryImages", "requests", "matches"]; // Names of array properties in user model
->>>>>>> e707bdb4d9c93350cf2014892f901a062b1100c2
 
         for (let property in updates) {
             if (arrays.includes(property)) { // Handle array properties
@@ -156,17 +98,6 @@ async function patchUser(req, res) {
 
 // DELETE /api/users/:id
 async function deleteUser(req, res) {
-<<<<<<< HEAD
-    const {id} = req.params;
-
-    const user = await User.findOneAndDelete({_id: id});
-
-    if(!user) res.status(404).json({message: "No such user!"});
-    else res.status(200).json({message: "User successfully deleted!"});
-}
-
-module.exports = {getUsers, getUser, loginUser, signupUser, patchUser, deleteUser};
-=======
     const { id } = req.params;
 
     const user = await User.findOneAndDelete({ _id: id });
@@ -176,4 +107,3 @@ module.exports = {getUsers, getUser, loginUser, signupUser, patchUser, deleteUse
 }
 
 module.exports = { getUsers, getUser, loginUser, signupUser, patchUser, deleteUser };
->>>>>>> e707bdb4d9c93350cf2014892f901a062b1100c2
