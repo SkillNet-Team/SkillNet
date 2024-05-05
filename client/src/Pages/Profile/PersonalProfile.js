@@ -8,22 +8,19 @@ export default function PersonalProfile({ isDarkMode }) {
   const [isSendingMessage, setIsSendingMessage] = useState(false); // State for sending message
   const [message, setMessage] = useState(''); // State to store the message
   const [profileData, setProfileData] = useState({
-    firstName: 'Marie',
-    lastName: 'Horwitz',
-    occupation: 'Web Designer',
-    location: 'New York, USA',
-    email: 'info@example.com',
-    phone: '123 456 789',
-    skills: ['Web Design', 'Graphic Design', 'Frontend Development'],
-    interests: ['Coding', 'Reading', 'Hiking'],
-    galleryImages: [
-      'https://via.placeholder.com/150',
-      'https://via.placeholder.com/150',
-      'https://via.placeholder.com/150'
-    ],
-    profilePicture: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp',
+    firstName: '',
+    lastName: '',
+    occupation: '',
+    location: '',
+    email: '',
+    phone: '',
+    skills: [''],
+    interests: [''],
+    galleryImages: [''],
+    profilePicture: '',
     tempProfileData: null // To store changes during edit mode
   });
+  
 
   useEffect(() => {
     const fetchProfileData = async () => {
