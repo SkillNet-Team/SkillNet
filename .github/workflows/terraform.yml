@@ -59,7 +59,7 @@ jobs:
         id: init
         run: terraform init -input=false
       - name: terraform validate
-        working-directory: .
+        working-directory: ./terraform
         if: ${{ github.event_name == 'pull_request' }}
         run: terraform validate -no-color
       - name: terraform plan
