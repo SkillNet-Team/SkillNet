@@ -1,25 +1,18 @@
-#################################################################
-# Example render.yaml                                           #
-# Do not use this file directly! Consult it for reference only. #
-#################################################################
-
-# List all services *except* PostgreSQL databases here
 services:
-  # A web service on the Ruby native runtime
   - type: web
     runtime: node
     name: skillnet-app
-    repo: https://github.com/SkillNet-Team/SkillNet # Default: Repo containing render.yaml
-    numInstances: 1 # Manual scaling configuration. Default: 1
-    region: oregon # Default: oregon
-    plan: free # Default: starter
-    branch: Myesha-Assignment-10-Deploy # Default: master
+    repo: https://github.com/SkillNet-Team/SkillNet
+    numInstances: 1
+    region: oregon
+    plan: free
+    branch: Myesha-Assignment-10-Deploy
     buildCommand: npm install
     startCommand: npm run start
-    autoDeploy: true # Disable automatic deploys
+    autoDeploy: true
     rootDir: server
 
-    envVars: # Environment variables
+    envVars:
       - key: MONGODB_URI
         value: mongodb+srv://admin:skillnetadmin123@skillnet.6yk66q8.mongodb.net/skillnet-db?retryWrites=true&w=majority&appName=SkillNet# Hardcoded value
       - key: PORT
@@ -31,7 +24,7 @@ services:
     runtime: static
     buildCommand: npm run build
     staticPublishPath: ./build
-    pullRequestPreviewsEnabled: true # Enable service previews
+    pullRequestPreviewsEnabled: true
     rootDir: client
     envVars:
       - key: REACT_APP_BACKEND_URL
