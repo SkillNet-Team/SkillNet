@@ -21,9 +21,7 @@ jobs:
                 cd ../server
                 npm install
       
-            - name: Prepare skillnet
-              run: |
-                skillnet translations compile
+
 
             - name: Build binary distribution and upload to artifactory
               run: zip -r "skillnet-deploy-${{github.sha}}.zip"
