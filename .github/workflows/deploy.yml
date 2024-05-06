@@ -52,3 +52,4 @@ jobs:
 
             - name: Deploy application
               run: aws elasticbeanstalk update-environment --environment-name skillnet-environment --version-label "ver-${{ github.sha }}"
+              
