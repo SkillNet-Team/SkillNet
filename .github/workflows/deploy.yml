@@ -46,7 +46,7 @@ jobs:
               run: |  
                 aws elasticbeanstalk create-application-version \
                 --application-name skillnet \
-                --source-bundle S3Bucket="s3://najia096-skillnet",S3Key="skillnet_deploy-${{github.sha}}.zip " \
+                --source-bundle S3Bucket="najia096-skillnet",S3Key="skillnet_deploy-${{github.sha}}.zip " \
                 --version-label "ver-${{ github.sha }}" \
                 --description "commit-sha-${{ github.sha }}"
 
