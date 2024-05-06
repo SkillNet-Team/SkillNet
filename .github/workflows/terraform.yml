@@ -12,6 +12,8 @@ on:
       - 'Terraform/**' # Adjusted path for GitHub repository
       - '.github/workflows/terraform.yml'
 
+
+      
 jobs:
   format:
     permissions:
