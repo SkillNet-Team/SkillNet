@@ -57,7 +57,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        working-directory: Terraform  # Adjusted working directory for local folder name
+        working-directory: Terraform  
         id: init
         run: terraform init -input=false
 
