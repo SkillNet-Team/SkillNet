@@ -1,4 +1,4 @@
-zip -r "skillnet-deploy-${{github.sha}}.zip"
+zip -r "skillnet-deploy-${{github.sha}}.zip" ./SkillNet-A6 
 
 aws s3 cp "skillnet_deploy-${{github.sha}}.zip" s3://najia096-skillnet
 
