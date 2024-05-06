@@ -7,12 +7,12 @@ on:
         branches: [ main ]
         paths:
             - 'terraform/*'
-            - '.github/workflows/terraform.yml'
+            - '.github/workflows/terraform.yaml'
     pull_request:
         branches: [ main ]
         paths:
             - 'terraform/*'
-            - '.github/workflows/terraform.yml'
+            - '.github/workflows/terraform.yaml'
 jobs:
   format:
     permissions:
