@@ -46,7 +46,7 @@ jobs:
                 --application-name skillnet \
                 --source-bundle S3Bucket="elasticbeanstalk-us-east-2-851725444803",S3Key="skillnet-deploy-${{github.sha}}.zip" \
                 --version-label "ver-${{ github.sha }}" \
-                --description "commit-sha-${{ github.sha }}"
+                --description "created application witk workflow ${{ github.sha }}"
 
             - name: Deploy application
               run: aws elasticbeanstalk update-environment --environment-name skillnet-environment --version-label "ver-${{ github.sha }}"
