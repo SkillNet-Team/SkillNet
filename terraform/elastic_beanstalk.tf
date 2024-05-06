@@ -1,5 +1,5 @@
 resource "aws_elastic_beanstalk_application" "application" {
-    name = "skillnet"  
+  name = "skillnet"
 }
 
 resource "aws_elastic_beanstalk_environment" "environment" {
