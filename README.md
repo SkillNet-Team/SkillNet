@@ -1,4 +1,4 @@
-#  SkillNet
+# SkillNet
 
 People often want to learn new skills or hobbies but find it challenging to access affordable and personalized learning opportunities. SkillNet aims to create a platform where individuals can exchange skills and knowledge with others in their community, fostering a collaborative learning environment.
 
@@ -12,15 +12,16 @@ SkillNet targets individuals who are eager to learn new skills or hobbies and ar
 
 # Features
 
-* Users can create profiles and list the skills they want to learn and the skills they can teach.
-* An algorithm suggests potential skill swaps based on user preferences, location, and availability.
-* Users can communicate and schedule skill exchange sessions within the platform (in app messaging).
-* Users can build credibility by receiving endorsements for skills taught or learned (like LinkedIn).
-* Users can host or join skill-sharing events, workshops, or meetups in the local area.
-* Users can rate and provide feedback on skill exchange experiences to maintain a high-quality community.
+- Users can create profiles and list the skills they want to learn and the skills they can teach.
+- An algorithm suggests potential skill swaps based on user preferences, location, and availability.
+- Users can communicate and schedule skill exchange sessions within the platform (in app messaging).
+- Users can build credibility by receiving endorsements for skills taught or learned (like LinkedIn).
+- Users can host or join skill-sharing events, workshops, or meetups in the local area.
+- Users can rate and provide feedback on skill exchange experiences to maintain a high-quality community.
 
 # Benefits
-* Diverse Skill set building
-* Cost effective learning
-* Networking
-* Personalized learning
+
+- Diverse Skill set building
+- Cost effective learning
+- Networking
+- Personalized learning
