@@ -23,7 +23,7 @@ jobs:
                 npm install
 
             - name: Build binary distribution and upload to artifactory
-              run: zip -r "skillnet-deploy-${{github.sha}}.zip" 
+              run: zip -r "skillnet-deploy-${{github.sha}}.zip" .
             - name: Upload application artifact
               uses: actions/upload-artifact@v3
               with:
