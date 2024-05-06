@@ -1,7 +1,11 @@
-zip -r "flaskbb_deploy-$1.zip" ./flaskbb ./.ebextensions wsgi.py setup.py setup.cfg requirements.txt flaskbb.cfg celery_worker.py
+# Compress your Node.js application files into a zip file
+zip -r "flaskbb_deploy-$1.zip" ./client ./server ./.ebextensions server.js package.json package-lock.json
 
-aws s3 cp "flaskbb_deploy-$1.zip" s3://flaskbbapp
+# Upload the zip file to an S3 bucket
+aws s3 cp "flaskbb_deploy-$1.zip" s3://najia096-skillnet
 
-aws elasticbeanstalk create-application-version --application-name flaskbb --source-bundle S3Bucket="flaskbbapp",S3Key="flaskbb_deploy-$1.zip" --version-label "ver-$1" --description "file permissions" --region "us-east-1"
+# Create a new application version in Elastic Beanstalk
+aws elasticbeanstalk create-application-version --application-name flaskbb --source-bundle S3Bucket="najia096-skillnet",S3Key="flaskbb_deploy-$1.zip" --version-label "ver-$1" --description "commit-sha-$1" --region "us-east-1"
 
+# Update the Elastic Beanstalk environment with the new application version
 aws elasticbeanstalk update-environment --environment-name flaskbb-environment --version-label "ver-$1" --region "us-east-1"
