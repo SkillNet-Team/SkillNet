@@ -24,7 +24,7 @@ jobs:
 
 
             - name: Build binary distribution and upload to artifactory
-              run: zip -r "skillnet-deploy-${{github.sha}}.zip" ./SkillNet-A6
+              run: zip -r "skillnet-deploy-${{github.sha}}.zip" ./client ./server
               
             - name: Upload application artifact
               uses: actions/upload-artifact@v3
