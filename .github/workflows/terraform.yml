@@ -4,12 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - 'terraform/*'
+      - 'Terraform/**' # Adjusted path for GitHub repository
       - '.github/workflows/terraform.yml'
   pull_request:
     branches: [main]
     paths:
-      - 'terraform/*'
+      - 'Terraform/**' # Adjusted path for GitHub repository
       - '.github/workflows/terraform.yml'
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
       
       - run: terraform fmt -check
-        working-directory: .
+        working-directory: Terraform  # Adjusted working directory for local folder name
         id: fmt
         continue-on-error: ${{ github.event_name == 'pull_request' }}
       
@@ -40,7 +40,7 @@ jobs:
           git add .
           git commit -m "Fix formatting issues"
           git push
-        working-directory: .
+        working-directory: Terraform  # Adjusted working directory for local folder name
 
   terraform:
     runs-on: ubuntu-latest
@@ -57,17 +57,17 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        working-directory: ./terraform
+        working-directory: Terraform  # Adjusted working directory for local folder name
         id: init
         run: terraform init -input=false
 
       - name: Terraform Validate
-        working-directory: ./terraform
+        working-directory: Terraform
         if: ${{ github.event_name == 'pull_request' }}
         run: terraform validate -no-color
 
       - name: Terraform Plan
-        working-directory: ./terraform
+        working-directory: Terraform
         id: plan
         if: ${{ github.event_name == 'pull_request' }}
         run: terraform plan -no-color -input=false
@@ -82,6 +82,6 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        working-directory: ./terraform
+        working-directory: Terraform
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: terraform apply -auto-approve -input=false
