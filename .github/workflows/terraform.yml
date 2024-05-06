@@ -27,7 +27,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
       
       - run: terraform fmt -check
-        working-directory: Terraform  # Adjusted working directory for local folder name
+        working-directory: ./Terraform  # Adjusted working directory for local folder name
         id: fmt
         continue-on-error: ${{ github.event_name == 'pull_request' }}
       
