@@ -1,42 +1,56 @@
+# This workflow will deploy the application to the running environment after a successful merge to main
+
 name: deploy
 
 on:
-  workflow_run:
-    workflows: [test]
-    types: [completed]
-    branches: [main]
+    workflow_run:
+        workflows: [test] # Triggered by the test workflow
+        types: [completed] # The test workflow must complete
+        branches: [main] # Only when main is updated
 
 jobs:
-  on-success:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    on-success:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }} # Only when test completed successfully 
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install wheel
+                pip install -r requirements-dev.txt
+                pip install -e .
+      
+            - name: Prepare FlaskBB
+              run: |
+                flaskbb translations compile
 
-      - name: Install AWS CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y awscli
+            - name: Build binary distribution and upload to artifactory
+              run: zip -r "flaskbb_deploy-${{github.sha}}.zip" ./flaskbb ./.ebextensions wsgi.py setup.py setup.cfg requirements.txt flaskbb.cfg celery_worker.py
+              
+            - name: Upload application artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: flaskbb_application_artifact
+                path: flaskbb_deploy-${{github.sha}}.zip
 
-      - name: Compress Node.js application files into a zip file
-        run: zip -r "nodejs_deploy-${{ github.sha }}.zip" ./client ./server ./.ebextensions server.js package.json package-lock.json
+            - name: Congifure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              with:
+                aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+                aws-region: "us-east-1" 
 
-      - name: Upload the zip file to an S3 bucket
-        run: aws s3 cp "nodejs_deploy-${{ github.sha }}.zip" s3://najia096-skillnet
+            - name: Upload application file to AWS
+              run: aws s3 cp flaskbb_deploy-${{github.sha}}.zip s3://flaskbbapp
 
-      - name: Create a new application version in Elastic Beanstalk
-        run: |
-          aws elasticbeanstalk create-application-version \
-          --application-name flaskbb \
-          --source-bundle S3Bucket="najia096-skillnet",S3Key="nodejs_deploy-${{ github.sha }}.zip" \
-          --version-label "ver-${{ github.sha }}" \
-          --description "commit-sha-${{ github.sha }}" \
-          --region "us-east-1"
+            - name: Create new application version
+              run: |  
+                aws elasticbeanstalk create-application-version \
+                --application-name flaskbb \
+                --source-bundle S3Bucket="flaskbbapp",S3Key="flaskbb_deploy-${{github.sha}}.zip " \
+                --version-label "ver-${{ github.sha }}" \
+                --description "commit-sha-${{ github.sha }}"
 
-      - name: Update the Elastic Beanstalk environment with the new application version
-        run: |
-          aws elasticbeanstalk update-environment \
-          --environment-name flaskbb-environment \
-          --version-label "ver-${{ github.sha }}" \
-          --region "us-east-1"
+            - name: Deploy application
+              run: aws elasticbeanstalk update-environment --environment-name flaskbb-environment --version-label "ver-${{ github.sha }}"
