@@ -4,7 +4,7 @@ name: deploy
 
 on:
   push:
-    branches: [Najia-A10]
+    branches: [main]
     paths:
       - 'client/**'
       - 'server/**'
