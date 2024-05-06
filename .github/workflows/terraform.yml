@@ -27,7 +27,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
       
       - run: terraform fmt -check
-        working-directory: ./Terraform  # Adjusted working directory for local folder name
+        working-directory: .  
         id: fmt
         continue-on-error: ${{ github.event_name == 'pull_request' }}
       
@@ -40,7 +40,7 @@ jobs:
           git add .
           git commit -m "Fix formatting issues"
           git push
-        working-directory: Terraform  # Adjusted working directory for local folder name
+        working-directory: .
 
   terraform:
     runs-on: ubuntu-latest
