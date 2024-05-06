@@ -41,7 +41,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git commit -am "fixup: terraform fmt"
           git push
-          working-directory: ./terraform
+        working-directory: ./terraform
   terraform:
     runs-on: ubuntu-latest
     name: Validate, Plan, and Apply
