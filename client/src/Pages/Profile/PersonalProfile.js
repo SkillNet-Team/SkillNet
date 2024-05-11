@@ -18,9 +18,7 @@ export default function PersonalProfile({ isDarkMode }) {
     interests: [''],
     galleryImages: [''],
     profilePicture: '',
-    tempProfileData: null // To store changes during edit mode
   });
-  
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -31,7 +29,6 @@ export default function PersonalProfile({ isDarkMode }) {
         if (response.ok) {
           setProfileData(data);
         } else {
-          // handle errors, e.g., user not found
           console.error('Failed to fetch profile data:', data.message);
         }
       } catch (error) {
@@ -43,31 +40,33 @@ export default function PersonalProfile({ isDarkMode }) {
   }, []);
 
   const handleEdit = () => {
-    if (isEditMode) {
-      // If cancelling edit mode, discard temporary changes
-      setProfileData({ ...profileData, ...profileData.tempProfileData });
-    } else {
-      // If entering edit mode, store current data in tempProfileData
-      setProfileData({ ...profileData, tempProfileData: { ...profileData } });
-    }
     setIsEditMode(!isEditMode);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProfileData({ ...profileData, [name]: value });
+    setProfileData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSkillChange = (index, value) => {
     const updatedSkills = [...profileData.skills];
     updatedSkills[index] = value;
-    setProfileData({ ...profileData, skills: updatedSkills });
+    setProfileData((prevData) => ({
+      ...prevData,
+      skills: updatedSkills,
+    }));
   };
 
   const handleInterestChange = (index, value) => {
     const updatedInterests = [...profileData.interests];
     updatedInterests[index] = value;
-    setProfileData({ ...profileData, interests: updatedInterests });
+    setProfileData((prevData) => ({
+      ...prevData,
+      interests: updatedInterests,
+    }));
   };
 
   const handleImageUpload = (e, index) => {
@@ -76,7 +75,10 @@ export default function PersonalProfile({ isDarkMode }) {
     reader.onload = () => {
       const updatedImages = [...profileData.galleryImages];
       updatedImages[index] = reader.result;
-      setProfileData({ ...profileData, galleryImages: updatedImages });
+      setProfileData((prevData) => ({
+        ...prevData,
+        galleryImages: updatedImages,
+      }));
     };
     reader.readAsDataURL(file);
   };
@@ -85,53 +87,40 @@ export default function PersonalProfile({ isDarkMode }) {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      setProfileData({ ...profileData, profilePicture: reader.result });
+      setProfileData((prevData) => ({
+        ...prevData,
+        profilePicture: reader.result,
+      }));
     };
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEditMode) {
-      // Only save changes if in edit mode and explicitly clicked the "Save" button
-      setIsEditMode(false);
-
-      const user = JSON.parse(localStorage.getItem('user'));
-
-      // Define the user update URL
-      const updateUrl = `${process.env.REACT_APP_BACKEND_URL}/users/${profileData.id}`;
-
-      // Set up the fetch request options
+    try {
+      const userId = JSON.parse(localStorage.getItem('user')).id;
+      const updateUrl = `${process.env.REACT_APP_BACKEND_URL}/users/${userId}`;
       const requestOptions = {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: profileData.email,
-          firstName: profileData.firstName,
-          lastName: profileData.lastName,
-          skills: profileData.skills,
-          interests: profileData.interests,
-          galleryImages: profileData.galleryImages,
-          profilePicture: profileData.profilePicture,
-        }),
+        body: JSON.stringify(profileData),
       };
-
-      // Make the fetch request to the server
-      fetch(updateUrl, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          alert('Profile updated successfully');
-        })
-        .catch(error => {
-          console.error('Error updating profile:', error);
-        });
-
+      const response = await fetch(updateUrl, requestOptions);
+      const data = await response.json();
+      if (response.ok) {
+        setProfileData(data); // Update local state with the fetched data after saving
+        setIsEditMode(false); // Exit edit mode
+        alert('Profile updated successfully');
+      } else {
+        console.error('Failed to update profile:', data.message);
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
     }
   };
 
   const handleSendSwapRequest = () => {
-    // Add functionality to send swap request
-    console.log("Sending swap request...");
+    console.log('Sending swap request...');
   };
 
   const handleSendMessage = () => {
@@ -139,14 +128,13 @@ export default function PersonalProfile({ isDarkMode }) {
   };
 
   const sendMessage = () => {
-    // Send message functionality goes here
-    console.log("Message sent:", message);
+    console.log('Message sent:', message);
     setIsSendingMessage(false); // Hide input box after sending message
     setMessage(''); // Reset message input
   };
 
   return (
-    <section className={isDarkMode ? "profile-section dark-mode" : "profile-section"}>
+    <section className={isDarkMode ? 'profile-section dark-mode' : 'profile-section'}>
       <div className="profile-container">
         <div className="edit-button-container">
           <button className="edit-button" onClick={handleEdit}>
@@ -176,49 +164,50 @@ export default function PersonalProfile({ isDarkMode }) {
                 <label htmlFor="phone">Phone</label>
                 <input type="text" id="phone" name="phone" value={profileData.phone} onChange={handleChange} />
                 <h3>Skills</h3>
-                {profileData.skills.map((skill, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    value={skill}
-                    onChange={(e) => handleSkillChange(index, e.target.value)}
-                  />
-                ))}
-                {profileData.skills.length === 0 && (
+                {profileData.skills && profileData.skills.length > 0 ? (
+                  profileData.skills.map((skill, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      value={skill}
+                      onChange={(e) => handleSkillChange(index, e.target.value)}
+                    />
+                  ))
+                ) : (
                   <input
                     type="text"
                     value=""
                     onChange={(e) => handleSkillChange(0, e.target.value)}
                   />
                 )}
-
                 <h3>Interests</h3>
-                {profileData.interests.map((interest, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    value={interest}
-                    onChange={(e) => handleInterestChange(index, e.target.value)}
-                  />
-                ))}
-                {profileData.interests.length === 0 && (
+                {profileData.interests && profileData.interests.length > 0 ? (
+                  profileData.interests.map((interest, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      value={interest}
+                      onChange={(e) => handleInterestChange(index, e.target.value)}
+                    />
+                  ))
+                ) : (
                   <input
                     type="text"
                     value=""
                     onChange={(e) => handleInterestChange(0, e.target.value)}
                   />
                 )}
-
                 <h3>Gallery</h3>
-                {profileData.galleryImages.map((image, index) => (
-                  <input
-                    key={index}
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, index)}
-                  />
-                ))}
-                {profileData.galleryImages.length === 0 && (
+                {profileData.galleryImages && profileData.galleryImages.length > 0 ? (
+                  profileData.galleryImages.map((image, index) => (
+                    <input
+                      key={index}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, index)}
+                    />
+                  ))
+                ) : (
                   <input
                     type="file"
                     accept="image/*"
@@ -240,17 +229,25 @@ export default function PersonalProfile({ isDarkMode }) {
                 <div>
                   <h3>Skills</h3>
                   <div className="profile-bubbles">
-                    {profileData.skills.map((skill, index) => (
-                      <span className="profile-bubble" key={index}>{skill}</span>
-                    ))}
+                    {profileData.skills && profileData.skills.length > 0 ? (
+                      profileData.skills.map((skill, index) => (
+                        <span className="profile-bubble" key={index}>{skill}</span>
+                      ))
+                    ) : (
+                      <p>No skills found</p>
+                    )}
                   </div>
                 </div>
                 <div>
                   <h3>Interests</h3>
                   <div className="profile-bubbles">
-                    {profileData.interests.map((interest, index) => (
-                      <span className="profile-bubble" key={index}>{interest}</span>
-                    ))}
+                    {profileData.interests && profileData.interests.length > 0 ? (
+                      profileData.interests.map((interest, index) => (
+                        <span className="profile-bubble" key={index}>{interest}</span>
+                      ))
+                    ) : (
+                      <p>No interests found</p>
+                    )}
                   </div>
                 </div>
               </>
@@ -260,9 +257,13 @@ export default function PersonalProfile({ isDarkMode }) {
         <div className="profile-gallery">
           <h3>Gallery</h3>
           <div>
-            {profileData.galleryImages.map((image, index) => (
-              <img key={index} src={image} alt={`Gallery Image ${index + 1}`} />
-            ))}
+            {profileData.galleryImages && profileData.galleryImages.length > 0 ? (
+              profileData.galleryImages.map((image, index) => (
+                <img key={index} src={image} alt={`Gallery Image ${index + 1}`} />
+              ))
+            ) : (
+              <p>No images found</p>
+            )}
           </div>
         </div>
         {!isEditMode && !isSendingMessage && (
