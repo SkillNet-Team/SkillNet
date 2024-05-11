@@ -8,19 +8,22 @@ export default function PersonalProfile({ isDarkMode }) {
   const [isSendingMessage, setIsSendingMessage] = useState(false); // State for sending message
   const [message, setMessage] = useState(''); // State to store the message
   const [profileData, setProfileData] = useState({
-    firstName: '',
-    lastName: '',
-    occupation: '',
-    location: '',
-    email: '',
-    phone: '',
-    skills: [''],
-    interests: [''],
-    galleryImages: [''],
-    profilePicture: '',
+    firstName: 'Marie',
+    lastName: 'Horwitz',
+    occupation: 'Web Designer',
+    location: 'New York, USA',
+    email: 'info@example.com',
+    phone: '123 456 789',
+    skills: ['Web Design', 'Graphic Design', 'Frontend Development'],
+    interests: ['Coding', 'Reading', 'Hiking'],
+    galleryImages: [
+      'https://via.placeholder.com/150',
+      'https://via.placeholder.com/150',
+      'https://via.placeholder.com/150'
+    ],
+    profilePicture: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp',
     tempProfileData: null // To store changes during edit mode
   });
-  
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -184,14 +187,6 @@ export default function PersonalProfile({ isDarkMode }) {
                     onChange={(e) => handleSkillChange(index, e.target.value)}
                   />
                 ))}
-                {profileData.skills.length === 0 && (
-                  <input
-                    type="text"
-                    value=""
-                    onChange={(e) => handleSkillChange(0, e.target.value)}
-                  />
-                )}
-
                 <h3>Interests</h3>
                 {profileData.interests.map((interest, index) => (
                   <input
@@ -201,14 +196,6 @@ export default function PersonalProfile({ isDarkMode }) {
                     onChange={(e) => handleInterestChange(index, e.target.value)}
                   />
                 ))}
-                {profileData.interests.length === 0 && (
-                  <input
-                    type="text"
-                    value=""
-                    onChange={(e) => handleInterestChange(0, e.target.value)}
-                  />
-                )}
-
                 <h3>Gallery</h3>
                 {profileData.galleryImages.map((image, index) => (
                   <input
@@ -218,13 +205,6 @@ export default function PersonalProfile({ isDarkMode }) {
                     onChange={(e) => handleImageUpload(e, index)}
                   />
                 ))}
-                {profileData.galleryImages.length === 0 && (
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, 0)}
-                  />
-                )}
                 {/* Add input fields for other editable attributes */}
                 <button type="submit">Save</button>
               </form>
