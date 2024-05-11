@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SignUp.css'; // Reusing the same CSS file
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
