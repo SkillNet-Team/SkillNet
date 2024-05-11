@@ -108,7 +108,6 @@ export default function PersonalProfile({ isDarkMode }) {
       const response = await fetch(updateUrl, requestOptions);
       const data = await response.json();
       if (response.ok) {
-        setProfileData(data); // Update local state with the fetched data after saving
         setIsEditMode(false); // Exit edit mode
         alert('Profile updated successfully');
       } else {
@@ -292,4 +291,3 @@ export default function PersonalProfile({ isDarkMode }) {
     </section>
   );
 }
-
