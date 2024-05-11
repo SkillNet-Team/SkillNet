@@ -292,3 +292,4 @@ export default function PersonalProfile({ isDarkMode }) {
     </section>
   );
 }
+
