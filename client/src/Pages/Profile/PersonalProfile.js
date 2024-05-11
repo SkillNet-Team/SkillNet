@@ -184,6 +184,14 @@ export default function PersonalProfile({ isDarkMode }) {
                     onChange={(e) => handleSkillChange(index, e.target.value)}
                   />
                 ))}
+                {profileData.skills.length === 0 && (
+                  <input
+                    type="text"
+                    value=""
+                    onChange={(e) => handleSkillChange(0, e.target.value)}
+                  />
+                )}
+
                 <h3>Interests</h3>
                 {profileData.interests.map((interest, index) => (
                   <input
@@ -193,6 +201,14 @@ export default function PersonalProfile({ isDarkMode }) {
                     onChange={(e) => handleInterestChange(index, e.target.value)}
                   />
                 ))}
+                {profileData.interests.length === 0 && (
+                  <input
+                    type="text"
+                    value=""
+                    onChange={(e) => handleInterestChange(0, e.target.value)}
+                  />
+                )}
+
                 <h3>Gallery</h3>
                 {profileData.galleryImages.map((image, index) => (
                   <input
@@ -202,6 +218,13 @@ export default function PersonalProfile({ isDarkMode }) {
                     onChange={(e) => handleImageUpload(e, index)}
                   />
                 ))}
+                {profileData.galleryImages.length === 0 && (
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageUpload(e, 0)}
+                  />
+                )}
                 {/* Add input fields for other editable attributes */}
                 <button type="submit">Save</button>
               </form>
