@@ -79,3 +79,4 @@ const Home = ({ isLoggedIn }) => {
 };
 
 export default Home;
+

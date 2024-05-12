@@ -1,0 +1,40 @@
+services:
+  - type: web
+    runtime: node
+    name: skillnet-app
+    repo: https://github.com/SkillNet-Team/SkillNet
+    numInstances: 1
+    region: oregon
+    plan: free
+    branch: Myesha-Assignment-10-Deploy
+    buildCommand: npm install
+    startCommand: npm run start
+    autoDeploy: true
+    rootDir: server
+
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://admin:skillnetadmin123@skillnet.6yk66q8.mongodb.net/skillnet-db?retryWrites=true&w=majority&appName=SkillNet# Hardcoded value
+      - key: PORT
+        value: 5000
+
+  # A static site
+  - type: web
+    name: skillnet-frontend
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: ./build
+    pullRequestPreviewsEnabled: true
+    rootDir: client
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        value: https://skillnet-app.onrender.com/api
+    buildFilter:
+      paths:
+        - src/*/.js
+      ignoredPaths:
+        - src/*/.test.js
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin
