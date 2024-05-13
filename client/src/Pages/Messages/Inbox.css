@@ -44,6 +44,10 @@
   cursor: pointer; /* Make messages clickable */
 }
 
+.message-item:hover {
+  background-color: gray;
+}
+
 /* Styles for message header */
 .message-header {
   display: flex;
