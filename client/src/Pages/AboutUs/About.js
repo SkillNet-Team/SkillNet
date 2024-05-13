@@ -1,6 +1,8 @@
 import React from 'react';
 import './About.css'; // Importing CSS file for styling
 import aboutImage from '../../Images/about.jpg'; // Importing the about image
+import myeshaImage from '../../Images/myesha.jpg'; // Importing Myesha's image
+import najiaImage from '../../Images/najia.jpg'; // Importing Najia's image
 import defaultpp from '../../Images/default.png'; // Importing the default profile picture
 
 const About = ({ isDarkMode }) => {
@@ -20,14 +22,14 @@ const About = ({ isDarkMode }) => {
           <h2>Meet the Team</h2>
           <div className="team-members">
             <div className={isDarkMode ? "team-member dark-mode" : "team-member"}>
-              <img src={defaultpp} alt="Myesha Mahazabeen" className="team-member-image" />
+              <img src={myeshaImage} alt="Myesha Mahazabeen" className="team-member-image" />
               <div className="team-member-info">
                 <h3>Myesha Mahazabeen</h3>
                 <p>Product Manager</p>
               </div>
             </div>
             <div className={isDarkMode ? "team-member dark-mode" : "team-member"}>
-              <img src={defaultpp} alt="Najia Jahan" className="team-member-image" />
+              <img src={najiaImage} alt="Najia Jahan" className="team-member-image" />
               <div className="team-member-info">
                 <h3>Najia Jahan</h3>
                 <p>Technical Program Manager</p>
