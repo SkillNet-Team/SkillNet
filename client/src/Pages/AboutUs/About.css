@@ -1,0 +1,74 @@
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .about-image-container {
+    margin-bottom: 30px;
+  }
+  
+  .about-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .content-section {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  
+  .mission-section {
+    margin-bottom: 30px;
+  }
+  
+  .team-section {
+    margin-bottom: 30px;
+  }
+  
+  .team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Spread out team members */
+    gap: 20px; /* Add some space between team members */
+  }
+  
+  .team-member {
+    width: calc(20% - 40px); /* Adjust the width of each team member box */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    text-align: center;
+  }
+  
+  .team-member img {
+    width: 100px; /* Adjust the size of the profile picture */
+    border-radius: 50%; /* Make the profile picture round */
+    margin-bottom: 10px; /* Add some space below the profile picture */
+  }
+  
+  .team-member h3 {
+    margin-bottom: 5px; /* Adjust spacing below the name */
+    font-size: 18px; /* Increase font size */
+  }
+  
+  .team-member p {
+    color: #666; /* Dim the text color */
+  }
+  
+  
+  .dark-mode .team-member {
+    background-color: #333;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .dark-mode .team-member h3,
+  .dark-mode .team-member p {
+    color: #fff;
+  }
+  
