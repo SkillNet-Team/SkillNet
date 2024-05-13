@@ -5,7 +5,7 @@ import myeshaImage from '../../Images/myesha.jpg'; // Importing Myesha's image
 import najiaImage from '../../Images/najia.jpg'; // Importing Najia's image
 import talikeImage from '../../Images/talike.jpg'; // Importing Talike's image
 import aleikaImage from '../../Images/aleika.jpg'; // Importing Aleika's image
-import defaultpp from '../../Images/default.png'; // Importing the default profile picture
+import elizaImage from '../../Images/eliza.jpg'; // Importing the default profile picture
 
 const About = ({ isDarkMode }) => {
   return (
@@ -45,7 +45,7 @@ const About = ({ isDarkMode }) => {
               </div>
             </div>
             <div className={isDarkMode ? "team-member dark-mode" : "team-member"}>
-              <img src={defaultpp} alt="Eliza Berard" className="team-member-image" />
+              <img src={elizaImage} alt="Eliza Berard" className="team-member-image" />
               <div className="team-member-info">
                 <h3>Eliza Berard</h3>
                 <p>Code Reviewer</p>
