@@ -45,14 +45,14 @@ const About = ({ isDarkMode }) => {
               </div>
             </div>
             <div className={isDarkMode ? "team-member dark-mode" : "team-member"}>
-              <img src={aleikaImage} alt="Eliza Berard" className="team-member-image" />
+              <img src={defaultpp} alt="Eliza Berard" className="team-member-image" />
               <div className="team-member-info">
                 <h3>Eliza Berard</h3>
                 <p>Code Reviewer</p>
               </div>
             </div>
             <div className={isDarkMode ? "team-member dark-mode" : "team-member"}>
-              <img src={defaultpp} alt="Aleika D Chery" className="team-member-image" />
+              <img src={aleikaImage} alt="Aleika D Chery" className="team-member-image" />
               <div className="team-member-info">
                 <h3>Aleika D Chery</h3>
                 <p>DevOps Engineer</p>
