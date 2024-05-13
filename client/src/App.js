@@ -9,6 +9,7 @@ import SignUp from './Pages/Signin/SignUp';
 import Login from './Pages/Signin/Login';
 import SwapRequests from './Pages/Requests/Requests';
 import Inbox from './Pages/Messages/Inbox';
+import Chat from './Pages/Messages/Chat'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("user") != null);
@@ -46,6 +47,7 @@ function App() {
             <Route path="/personalprofile" element={<PersonalProfile user={`${localStorage.getItem("user")}`} isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
             <Route path="/swaprequests" element={<SwapRequests />} /> 
             <Route path="/messages" element={<Inbox />} /> 
+            <Route path="/chat" element={<Chat />} />
           </Routes>
         </div>
       </div>

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Inbox.css'; // Import your CSS file for styling
 
 const Inbox = () => {
+  const navigate = useNavigate(); // Hook to access the navigate function to navigate
+
   // Example array of messages (replace with actual data fetched from API)
   const [messages, setMessages] = useState([
     { id: 1, sender: 'John', content: 'Hi, let\'s discuss the agenda for tomorrow\'s meeting.' },
@@ -13,8 +16,8 @@ const Inbox = () => {
   const [expandedMessageId, setExpandedMessageId] = useState(null);
 
   // Function to handle message click
-  const handleMessageClick = (messageId) => {
-    setExpandedMessageId(messageId === expandedMessageId ? null : messageId);
+  const handleMessageClick = () => {
+    navigate('/chat');
   };
 
   return (
@@ -22,20 +25,17 @@ const Inbox = () => {
       <h1 className="inbox-heading">Inbox</h1>
       <div className="messages-list">
         {messages.map(message => (
-          <div key={message.id} className="message-item" onClick={() => handleMessageClick(message.id)}>
+          <div key={message.id} className="message-item" onClick={handleMessageClick}>
             <div className="message-header">
               <div className="message-sender">{message.sender}</div>
             </div>
-            {/* Show message content if expanded */}
-            {expandedMessageId === message.id && (
-              <div className="message-content">{message.content}</div>
-            )}
           </div>
         ))}
       </div>
     </div>
   );
 };
+
 
 export default Inbox;
 
