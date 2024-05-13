@@ -12,8 +12,12 @@
 /* Card container styles */
 .card-container {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: space-around; /* Distribute space between cards */
+  max-width: 1200px; /* Set maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally */
 }
+
 
 /* Card styles */
 /* Card styles */
