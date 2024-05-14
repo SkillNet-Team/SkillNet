@@ -1,6 +1,8 @@
-#  SkillNet: https:
+#  SkillNet
 
 People often want to learn new skills or hobbies but find it challenging to access affordable and personalized learning opportunities. SkillNet aims to create a platform where individuals can exchange skills and knowledge with others in their community, fostering a collaborative learning environment.
+
+🔗 Link to deployed app: https://skillnet-rbs0.onrender.com/
 
 # Description
 
