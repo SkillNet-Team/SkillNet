@@ -1,4 +1,4 @@
-#  SkillNet: https: [link] (//skillnet-rbs0.onrender.com/)
+#  SkillNet: https:
 
 People often want to learn new skills or hobbies but find it challenging to access affordable and personalized learning opportunities. SkillNet aims to create a platform where individuals can exchange skills and knowledge with others in their community, fostering a collaborative learning environment.
 
