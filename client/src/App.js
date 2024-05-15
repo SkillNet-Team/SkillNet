@@ -9,6 +9,8 @@ import SignUp from './Pages/Signin/SignUp';
 import Login from './Pages/Signin/Login';
 import SwapRequests from './Pages/Requests/Requests';
 import Inbox from './Pages/Messages/Inbox';
+import Chat from './Pages/Messages/Chat'
+import About from './Pages/AboutUs/About';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("user") != null);
@@ -40,12 +42,14 @@ function App() {
         <div className="container mt-4">
           <Routes>
             <Route path="/" element={<Join />} />
+            <Route path="/aboutus" element={<About />} />
             <Route path="/home" element={<Home isLoggedIn={isLoggedIn} />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
             <Route path="/personalprofile" element={<PersonalProfile user={`${localStorage.getItem("user")}`} isLoggedIn={isLoggedIn} />} /> {/* Pass isLoggedIn prop */}
-            <Route path="/swaprequests" element={<SwapRequests />} /> 
-            <Route path="/messages" element={<Inbox />} /> 
+            <Route path="/swaprequests" element={<SwapRequests />} />
+            <Route path="/messages" element={<Inbox />} />
+            <Route path="/chat/:id" element={<Chat />} />
           </Routes>
         </div>
       </div>

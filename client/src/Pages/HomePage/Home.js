@@ -15,10 +15,46 @@ const Home = ({ isLoggedIn }) => {
       if (response.ok) {
         // Filter out user that is currently logged in (if necessary)
         if (!user) setBackendData(data);
-        else setBackendData(data.filter((u) => (u._id !== JSON.parse(user).id)));
+        else {
+          var userInterests = JSON.parse(user).interests[0];
+          userInterests = userInterests.split(', ');
+          var valData = []
+          var scoreDct = {}
+          for(var i=0; i<data.length; i++) {
+            var dInt = data[i].skills;
+            if(dInt.length==0) {
+              scoreDct[i] = 0;
+              continue;
+            }
+            dInt = dInt[0].split(', ');
+            var score = 0
+            for(var j=0; j<userInterests.length; j++) {
+              for(var k=0; k<dInt.length; k++) {
+                if(dInt[k]==userInterests[j]) {
+                  score++;
+                  break;
+                }
+              }
+            }
+            scoreDct[i] = score;
+          }
+          scoreDct = Object.fromEntries(
+            Object.entries(scoreDct).filter(([key, value]) => value !== 0)
+          );
+          const sortedKeys = Object.keys(scoreDct).sort((a, b) => scoreDct[b] - scoreDct[a]);
+
+          // Take the first 10 keys
+          const top10Keys = sortedKeys.slice(0, 11);
+          
+          for(var i=1; i<top10Keys.length; i++) {
+            valData.push(data[top10Keys[i]]);
+          }
+          // valData = top10Keys.map((key)=>data[scoreDct[key]])
+          console.log(data)
+          setBackendData(valData.filter((u) => (u._id !== JSON.parse(user).id)));
+        }
       }
     }
-
     fetchUsers();
   }, []);
 

@@ -2,6 +2,8 @@
 
 People often want to learn new skills or hobbies but find it challenging to access affordable and personalized learning opportunities. SkillNet aims to create a platform where individuals can exchange skills and knowledge with others in their community, fostering a collaborative learning environment.
 
+🔗 Link to deployed app: https://skillnet-rbs0.onrender.com/
+
 # Description
 
 SkillNet tackles the common problem of limited access and high costs associated with learning new skills. This innovative platform allows individuals to easily learn and teach new skills by connecting with others in their local community. Whether one wants to acquire a new skill or share expertise, SkillNet provides a simple and cost-effective solution. By facilitating skill exchange, SkillNet transforms traditional learning barriers into collaborative opportunities, making it easier for people to grow and develop through shared knowledge and experiences.
