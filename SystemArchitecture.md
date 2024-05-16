@@ -7,3 +7,7 @@ Our application is built with the MERN stack, which consists of MongoDB, Express
 ## Entity Diagram
 ![entity](entity.png)
 Two models are used for our application: User and Message. As the names suggest, the User model is used to store data about each specific user and the Message model is used to store each of the messages. Both models are connected via each user's ID, since those are incorportated in the messages that are sent.
+
+## Sequence Diagram
+![sequence](sequence.png)
+This sequence diagram illustrates how the different compoents interact with each other when a user makes specific actions.
