@@ -18,8 +18,7 @@ app.get("/api", (req, res) => {
 });
 
 // Connect to database
-// mongoose.connect(process.env.MONGODB_URI)
-mongoose.connect('mongodb+srv://nathan0322:Nat&dan12@cluster0.ovpx1ss.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log("Connected to database!");
 
