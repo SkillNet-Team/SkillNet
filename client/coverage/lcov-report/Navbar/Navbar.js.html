@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Login.js</title>
+    <title>Code coverage report for Navbar/Navbar.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> Login.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">Navbar</a> Navbar.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.77% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/9</span>
+                <span class='fraction'>6/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">25% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">66.66% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">77.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/9</span>
+                <span class='fraction'>6/9</span>
             </div>
         
             
@@ -113,30 +113,42 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,72 +176,78 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
+import './Navbar.css'; // Import the CSS file for styling
+import logo from '../Images/logo.png'; // Import the logo image
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 &nbsp;
+const Navbar = () =&gt; {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 &nbsp;
-const Login = () =&gt; {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-&nbsp;
-  const handleChange = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
-    const { name, value } = <span class="cstat-no" title="statement not covered" >e.target;</span>
-<span class="cstat-no" title="statement not covered" >    setFormData({</span>
-      ...formData,
-      [name]: value
-    });
+  const toggleDropdown = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    setIsDropdownOpen(!isDropdownOpen);</span>
   };
 &nbsp;
-  const handleSubmit = (e) =&gt; {
-    e.preventDefault();
-    // Add your login logic here
-    console.log(formData);
+  const handleLogout = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+    // Implement your logout functionality here
+<span class="cstat-no" title="statement not covered" >    console.log("Logout clicked");</span>
+  };
+&nbsp;
+  const handleDropdownClick = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
+<span class="cstat-no" title="statement not covered" >    event.stopPropagation(); </span>// Prevent event propagation
   };
 &nbsp;
   return (
-    &lt;div className="signup-container"&gt;
-      &lt;h2&gt;Login&lt;/h2&gt;
-      &lt;form onSubmit={handleSubmit}&gt;
-        &lt;input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        /&gt;
-        &lt;input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        /&gt;
-        &lt;button type="submit"&gt;Login&lt;/button&gt;
-      &lt;/form&gt;
-    &lt;/div&gt;
+    &lt;nav className="navbar"&gt;
+      &lt;div className="navbar-logo"&gt;
+        &lt;a href="/join"&gt;
+          &lt;img src={logo} alt="Logo" /&gt; {/* Wrap logo inside anchor tag */}
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;ul className="navbar-menu"&gt;
+        &lt;li&gt;&lt;a href="/home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/aboutus"&gt;About Us&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/resources"&gt;Resources&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/community"&gt;Community&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;div className="navbar-search"&gt;
+        &lt;input type="text" placeholder="Search" /&gt;
+        &lt;button&gt;Search&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div className="navbar-profile"&gt;
+        &lt;div className="dropdown"&gt;
+          &lt;button onClick={toggleDropdown} className="dropbtn"&gt;
+            &lt;FontAwesomeIcon icon={faUser} size="2x" className="user-icon" /&gt;
+          &lt;/button&gt;
+          {isDropdownOpen &amp;&amp; (
+<span class="branch-1 cbranch-no" title="branch not covered" >            &lt;div className="dropdown-content" onClick={handleDropdownClick}&gt;</span>
+              &lt;a href="/personalprofile"&gt;Profile&lt;/a&gt;
+              &lt;button onClick={handleLogout}&gt;Log Out&lt;/button&gt;
+            &lt;/div&gt;
+          )}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
   );
 };
 &nbsp;
-export default Login;
-&nbsp;</pre></td></tr></table></pre>
+export default Navbar;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-18T05:04:10.445Z
+                at 2024-05-11T20:52:20.785Z
             </div>
-        <script src="prettify.js"></script>
+        <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="sorter.js"></script>
-        <script src="block-navigation.js"></script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
     </body>
 </html>
     
