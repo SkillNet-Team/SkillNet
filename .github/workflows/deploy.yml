@@ -1,0 +1,55 @@
+# This workflow will deploy the application to the running environment after a successful merge to main
+
+name: deploy
+
+on:
+    workflow_run:
+        workflows: [test] # Triggered by the test workflow
+        types: [completed] # The test workflow must complete
+        branches: [main] # Only when main is updated
+
+jobs:
+    on-success:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }} # Only when test completed successfully 
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install dependencies
+              run: |
+                cd client
+                npm install
+                cd ../server
+                npm install
+      
+
+
+            - name: Build binary distribution and upload to artifactory
+              run: zip -r "skillnet-deploy-${{github.sha}}.zip" ./client ./server
+              
+            - name: Upload application artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: skillnet_application_artifact
+                path: skillnet-deploy-${{github.sha}}.zip
+
+            - name: Congifure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              with:
+                aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+                aws-region: "us-east-1" 
+
+            - name: Upload application file to AWS
+              run: aws s3 cp skillnet-deploy-${{github.sha}}.zip s3://najia096-skillnet
+
+            - name: Create new application version
+              run: |  
+                aws elasticbeanstalk create-application-version \
+                --application-name skillnet \
+                --source-bundle S3Bucket="najia096-skillnet",S3Key="skillnet-deploy-${{github.sha}}.zip " \
+                --version-label "ver-${{ github.sha }}" \
+                --description "commit-sha-${{ github.sha }}"
+
+            - name: Deploy application
+              run: aws elasticbeanstalk update-environment --environment-name skillnet-environment --version-label "ver-${{ github.sha }}"
+              

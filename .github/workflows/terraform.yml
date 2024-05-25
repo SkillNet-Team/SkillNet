@@ -1,0 +1,89 @@
+name: terraform
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Terraform/**' # Adjusted path for GitHub repository
+      - '.github/workflows/terraform.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Terraform/**' # Adjusted path for GitHub repository
+      - '.github/workflows/terraform.yml'
+
+
+      
+jobs:
+  format:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    name: Format
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform CLI
+        uses: hashicorp/setup-terraform@v1
+      
+      - run: terraform fmt -check
+        working-directory: .  
+        id: fmt
+        continue-on-error: ${{ github.event_name == 'pull_request' }}
+      
+      - name: Update pull request
+        if: ${{ steps.fmt.outcome == 'failure' && github.event_name == 'pull_request' }}
+        run: |
+          terraform fmt
+          git config --global user.name "terraform-fmt"
+          git config --global user.email "noreply@corise.com"
+          git add .
+          git commit -m "Fix formatting issues"
+          git push
+        working-directory: .
+
+  terraform:
+    runs-on: ubuntu-latest
+    name: Validate, Plan, and Apply
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform CLI
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        working-directory: Terraform  
+        id: init
+        run: terraform init -input=false
+
+      - name: Terraform Validate
+        working-directory: Terraform
+        if: ${{ github.event_name == 'pull_request' }}
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        working-directory: Terraform
+        id: plan
+        if: ${{ github.event_name == 'pull_request' }}
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+
+      - name: Pass or Fail
+        uses: actions/github-script@v6
+        if: ${{ steps.plan.outcome == 'failure' }}
+        with:
+          script: |
+            core.setFailed('Plan failed!')
+
+      - name: Terraform Apply
+        id: apply
+        working-directory: Terraform
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: terraform apply -auto-approve -input=false
